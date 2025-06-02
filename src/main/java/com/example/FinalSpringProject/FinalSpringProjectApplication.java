@@ -1,13 +1,13 @@
-package com.example.FinalSpringPjoject;
+package com.example.FinalSpringProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FinalSpringPjojectApplication {
+public class FinalSpringProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FinalSpringPjojectApplication.class, args);
+		SpringApplication.run(FinalSpringProjectApplication.class, args);
 	}
 
 }
