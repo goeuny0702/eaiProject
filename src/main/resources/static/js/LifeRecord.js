@@ -9,40 +9,36 @@ function saveAll() {
   const data = {};
 
   fields.forEach(field => {
-    const input = document.getElementById(field + '-input');
-    const text = document.getElementById(field + '-text');
-    const value = input.value.trim();
+    // 상담 기록 처리
+    const terminationInput = document.getElementById('termination-input');
+    const terminationText = document.getElementById('termination-text');
+    const terminationValue = terminationInput.value.trim();
 
-    // 저장할 데이터에 넣기
-    data[field] = value;
+    // termination 데이터를 data에 저장
+    data['termination'] = terminationValue;
 
-    // input 숨기고, text에 값 보이게
-    text.innerText = value;
-    text.style.display = 'inline';
-    input.style.display = 'none';
+    // termination 입력값을 텍스트로 보이게
+    terminationText.innerText = terminationValue;
+    terminationText.style.display = 'inline';
+    terminationInput.style.display = 'none';  // input 숨기기!
+
   });
 
-  // 종결 기록 (라디오 버튼)
-  const terminationInputs = document.getElementsByName('termination');
-  let selectedValue = '';
-  for (let i = 0; i < terminationInputs.length; i++) {
-    if (terminationInputs[i].checked) {
-      selectedValue = terminationInputs[i].value;
-      break;
-    }
-  }
-  document.getElementById('termination-text').innerText = selectedValue;
-  document.getElementById('termination-text').style.display = 'inline';
-  document.getElementById('termination-input').style.display = 'none';
+  // 상담 기록 처리
+  const terminationInput = document.getElementById('termination-input');
+  const terminationText = document.getElementById('termination-text');
+  const terminationValue = terminationInput.value.trim();
 
-  // termination 값도 저장
-  data['termination'] = selectedValue;
+  data['termination'] = terminationValue;
+  terminationText.innerText = terminationValue;
+  terminationText.style.display = 'inline';
+  terminationInput.style.display = 'none';
 
-  // localStorage 저장
   localStorage.setItem('lifeRecord', JSON.stringify(data));
 
   alert('저장되었습니다!');
 }
+
 
 window.onload = function () {
   const savedData = JSON.parse(localStorage.getItem('lifeRecord'));
