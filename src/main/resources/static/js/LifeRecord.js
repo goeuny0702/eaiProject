@@ -3,7 +3,7 @@ function saveAll() {
     'name', 'id', 'address', 'job', 'course', 'duration', 'attendance', 'instructor',
     'task', 'design', 'product', 'url', 'contest',
     'attitude', 'focus', 'question', 'initiative', 'future',
-    'notes', 'consultation', 'termination' // 상담기록 추가
+    'notes', 'consultation', 'termination'
   ];
 
   const data = {};
@@ -33,22 +33,21 @@ function editAll() {
     'name', 'id', 'address', 'job', 'course', 'duration', 'attendance', 'instructor',
     'task', 'design', 'product', 'url', 'contest',
     'attitude', 'focus', 'question', 'initiative', 'future',
-    'notes', 'consultation', 'termination' // 상담기록 포함!
+    'notes', 'consultation', 'termination'
   ];
 
   fields.forEach(field => {
     const input = document.getElementById(field + '-input');
     const text = document.getElementById(field + '-text');
 
-    // 기존 텍스트를 input의 value로 복원
-    input.value = text.innerText;
-
-    input.style.display = 'inline';
-    text.style.display = 'none';
+    // 실제로 존재할 때만 처리
+    if (input && text) {
+      input.value = text.innerText;
+      input.style.display = 'inline';
+      text.style.display = 'none';
+    }
   });
 }
-
-
 
 
 window.onload = function () {
@@ -58,7 +57,7 @@ window.onload = function () {
       'name', 'id', 'address', 'job', 'course', 'duration', 'attendance', 'instructor',
       'task', 'design', 'product', 'url', 'contest',
       'attitude', 'focus', 'question', 'initiative', 'future',
-      'notes', 'consultation'
+      'notes', 'consultation', 'termination'
     ];
 
     fields.forEach(field => {
@@ -70,12 +69,5 @@ window.onload = function () {
         input.style.display = 'none';
       }
     });
-
-    // 상담 기록도 불러오기
-    if (savedData['termination']) {
-      document.getElementById('termination-text').innerText = savedData['termination'];
-      document.getElementById('termination-text').style.display = 'inline';
-      document.getElementById('termination-input').style.display = 'none';
-    }
   }
 };
