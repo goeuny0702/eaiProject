@@ -11,3 +11,12 @@ public class MainController {
         return "main"; // resources/templates/main.html
     }
 }
+
+@Controller
+class LifeRecordController {
+
+    @GetMapping("/LifeRecord")
+    public String showLifeRecordPage() {
+        return "LifeRecord";
+    }
+}
