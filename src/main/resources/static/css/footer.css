@@ -13,6 +13,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .footer-brand {
@@ -77,4 +78,21 @@ footer {
     margin-left: 0;
     margin-top: 20px;
   }
+}
+
+.footer-sns {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.footer-sns a img {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  transition: transform 0.3s;
+}
+
+.footer-sns a img:hover {
+  transform: scale(1.2);
 }
