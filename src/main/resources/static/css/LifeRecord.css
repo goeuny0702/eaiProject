@@ -1,0 +1,29 @@
+body {
+    justify-items: center;
+}
+
+.recordContainer {
+    width: 1000px;
+    margin: 50px 0px;
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+input, textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hidden {
+    display: none;
+}
