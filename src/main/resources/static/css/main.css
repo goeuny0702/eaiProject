@@ -1,190 +1,215 @@
 body {
-            font-family: 'Noto Sans KR', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
 
-        .banner {
-            width:91%;
-            height: 180px;
-            margin:auto;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            z-index: 0;
-        }
+.banner {
+  width: 80%;
+  height: 180px;
+  margin:0 auto 30px auto;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
 
-        .banner-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0,0,0,0.4);
-            color: white;
-            border: none;
-            font-size: 24px;
-            padding: 10px 15px;
-            cursor: pointer;
-            z-index: 2;
-            border-radius: 50%;
-            transition: background-color 0.3s;
-        }
+.banner-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
 
-        .banner-btn:hover {
-            background-color: rgba(0,0,0,0.7);
-        }
+.banner-btn:hover {
+  background-color: rgba(0,0,0,0.7);
+}
 
-        .banner-btn.prev {
-            left: 10px;
-        }
+.banner-btn.prev {
+  left: 10px;
+}
 
-        .banner-btn.next {
-            right: 10px;
-        }
+.banner-btn.next {
+  right: 10px;
+}
 
-        .indicator-btn {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.6);
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.indicator-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
-        .indicator-btn.active {
-            background-color: rgba(255, 255, 255, 1);
-        }
+.indicator-btn.active {
+  background-color: rgba(255, 255, 255, 1);
+}
 
-        .main-content {
-            display: flex;
-            justify-content: space-between;
-            padding: 30px 60px;
-            gap: 30px;
-        }
-        .left-panel, .right-panel {
-        width: 48%;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
+.main-grid {
+  width:80%;
+  margin:0 auto;
+  display: grid;
+  grid-template-areas:
+    "calender ai"
+    "notice consult";
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding:0
+}
 
-        }
-        .image-box {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        padding: 20px;
-        flex: 1;
-        }
-        .image-box img {
-         max-width: 100%;
-         border-radius: 10px;
-         }
-        .image-box .image-title {
-        margin-top: 10px;
-        font-weight: bold;
-        }
-        .image-box .image-desc {
-        font-size: 14px;
-        color: #555;
-        }
+.box {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.calendar-section {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 40px;
+  margin-right: 12px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.calendar-day,
+.calendar-date {
+  text-align: center;
+  padding: 6px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.calendar-date.today {
+  background-color: #007bff;
+  color: white;
+}
+
+.calendar-date.other-month {
+  color: #ccc;
+}
+
+.ai img {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 13px;
+  background:#fff;
+}
+
+.ai-title {
+     font-size: 2rem;
+     font-weight: bold;
+     color: #1a1a1a;
+     text-align: center;
+     margin-bottom: 12px;
+     margin-top: 8px;
+     line-height: 1.3;
+}
+
+.ai-desc,
+.ai-period {
+  font-size: 14px;
+  color: #555;
+  margin-bottom:16px;
+}
+.ai-image-wrapper {
+    width: 110%;
+    height:180px;
+    overflow: hidden;
+    border-radius: 18px;
+    margin-left: -5%;
+    margin-bottom: 16px;
+    background: #fff;
+    }
+}
+.ai-image-wrapper img {
+    width: 100%;
+    height:100%;
+    border-radius: 18px;
+     object-fit: cover;
+}
+
+ .ai-overlay-text {
+   position: absolute;
+   top: 20px;
+   left: 20px;
+   color: white;
+   font-size: 10px;
+   font-weight: bold;
+   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+ }
 
 
-        .calendar-section {
-            width: 40%;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            padding: 20px;
-        }
+.title,
+.panel-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.item,
+.notice-item {
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-            margin-top: 10px;
-        }
+.bottom-panels {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 40px;
+}
 
-        .calendar-day,
-        .calendar-date {
-            text-align: center;
-            padding: 6px;
-            border-radius: 5px;
-            font-size:13px;
-        }
+.bottom-panels .panel-box {
+  width: 45%;
+}
 
-        .calendar-date.today {
-            background-color: #007bff;
-            color: white;
-        }
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
 
-        .calendar-date.other-month {
-            color: #ccc;
-        }
-
-        .right-panel {
-            width: 55%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .panel-box {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            padding: 20px;
-            flex: 1;
-        }
-
-        .panel-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .notice-item {
-            margin-bottom: 8px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 8px;
-            background-color: #fafafa;
-            font-size: 14px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-        }
-
-        .slide.active {
-            opacity: 1;
-            z-index: 1;
-        }
-        .bottom-panels {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 40px;
-        gap: 30px;
-        }
-
-        .bottom-panels .panel-box {
-         width: 45%;
-         }
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
