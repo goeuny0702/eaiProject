@@ -12,6 +12,7 @@
 
 <div th:replace="layout/header :: header"></div>
 
+<!-- 배너 -->
 <div class="banner" id="bannerSlider">
     <div class="slide" th:style="'background-image: url(' + @{/image/banner1.jpg} + ')'"></div>
     <div class="slide" th:style="'background-image: url(' + @{/image/banner2.jpg} + ')'"></div>
@@ -25,14 +26,14 @@
     </div>
 </div>
 
-<div class="main-content">
-    <div style="display: flex;
-    gap: 30px;
-    width: 100%;">
-    <div class="calendar-section">
+<!-- 2x2 메인 콘텐츠 -->
+<div class="main-grid">
+
+    <!-- 달력 -->
+    <div class="calendar-section box">
         <div class="calendar-header">
             <button onclick="changeMonth(-1)">◀</button>
-            <h2 id="monthYear"></h2>
+            <h2 id="monthYear">2025년 6월</h2>
             <button onclick="changeMonth(1)">▶</button>
         </div>
         <div class="calendar-grid" id="calendarDays">
@@ -46,25 +47,35 @@
         </div>
         <div class="calendar-grid" id="calendarDates"></div>
     </div>
-        <div class="panel-box">
-            <div class="panel-title">공지사항</div>
-            <div class="notice-item">공지사항1 가나다라마바사...</div>
-            <div class="notice-item">공지사항2 가나다라마바사...</div>
+
+    <div class="ai box">
+        <div class="ai-title">
+            현재 진행 과정<br >
+        </div>
+        <div class="ai-image-wrapper">
+            <img src="/image/image.png" alt="AI Solution Image">
+        </div>
+        <div class="desc">
+            과정명<br>
+            차세대 AI 예측 Solution 개발(자바,파이썬,RPA) (9회차)
+        </div>
+
+        <div class="period">
+            교육기간<br>
+            2025.06.25 ~ 2025.12.18
         </div>
     </div>
 
-    <div class="right-panel">
-        <div class="image-box">
-            <img src="/image/ai-banner.jpg">
-            <div class="image-title">차세대 AI 예측 Solution 개발</div>
-            <div class="image-desc">Java, Python, 데이터마이닝, RPA 등</div>
-        </div>
+    <div class="notice box">
+        <div class="title">공지사항</div>
+        <div class="item">공지사항1 가나다라마바사...</div>
+        <div class="item">공지사항2 가나다라마바사...</div>
+    </div>
 
-            <div class="panel-box">
-                <div class="panel-title">온라인 상담</div>
-                <div class="notice-item">상담1 가나다라마바사...</div>
-                <div class="notice-item">상담2 가나다라마바사...</div>
-        </div>
+    <div class="consult box">
+        <div class="title">온라인 상담</div>
+        <div class="item">상담1 가나다라마바사...</div>
+        <div class="item">상담2 가나다라마바사...</div>
     </div>
 </div>
 
