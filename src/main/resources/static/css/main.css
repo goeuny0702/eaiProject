@@ -1,0 +1,190 @@
+body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .banner {
+            width:91%;
+            height: 180px;
+            margin:auto;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .banner-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.4);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 2;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .banner-btn:hover {
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .banner-btn.prev {
+            left: 10px;
+        }
+
+        .banner-btn.next {
+            right: 10px;
+        }
+
+        .indicator-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicator-btn.active {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 60px;
+            gap: 30px;
+        }
+        .left-panel, .right-panel {
+        width: 48%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        }
+        .image-box {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        padding: 20px;
+        flex: 1;
+        }
+        .image-box img {
+         max-width: 100%;
+         border-radius: 10px;
+         }
+        .image-box .image-title {
+        margin-top: 10px;
+        font-weight: bold;
+        }
+        .image-box .image-desc {
+        font-size: 14px;
+        color: #555;
+        }
+
+
+        .calendar-section {
+            width: 40%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .calendar-day,
+        .calendar-date {
+            text-align: center;
+            padding: 6px;
+            border-radius: 5px;
+            font-size:13px;
+        }
+
+        .calendar-date.today {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .calendar-date.other-month {
+            color: #ccc;
+        }
+
+        .right-panel {
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .panel-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            flex: 1;
+        }
+
+        .panel-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .notice-item {
+            margin-bottom: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 8px;
+            background-color: #fafafa;
+            font-size: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+        .bottom-panels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        gap: 30px;
+        }
+
+        .bottom-panels .panel-box {
+         width: 45%;
+         }
