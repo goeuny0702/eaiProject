@@ -15,4 +15,6 @@ public class Training {
     private String telNo;
     private String address;
     private String subTitle;
+    private String trainTarget;
+    private String titleLink;
 }
