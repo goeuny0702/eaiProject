@@ -1,228 +1,122 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>회원 정보 수정</title>
-  <style>
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      padding: 40px;
-      background-color: #fff;
-    }
-
-    .container {
-      display: flex;
-      gap: 40px;
-
-      /* 추가 */
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-
-    .left-box {
-      width: 260px;
-      text-align: center;
-    }
-
-    .photo {
-      width: 100%;
-      height: 260px;
-      border: 1px solid #ccc;
-      background-color: #f5f5f5;
-    }
-
-    .btn-group {
-      margin-top: 10px;
-      text-align: right;
-    }
-
-    .btn-group button {
-      background-color: blue;
-      color: white;
-      border: none;
-      padding: 6px 16px;
-      margin: 0 5px;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-
-    .form-box {
-      flex: 1;
-    }
-
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .section-title {
-      padding: 10px 0;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .form-row {
-      display: flex;
-      margin-bottom: 10px;
-    }
-
-    .form-label {
-      background-color: #e6e6e6;
-      width: 140px;
-      padding: 10px;
-      font-weight: bold;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-
-    .form-row input,
-    .form-row select {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-
-    /* 비고 전용 레이아웃 */
-    .form-row.column {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .full-label {
-      width: 100%;
-      background-color: #e6e6e6;
-      border: 1px solid #ccc;
-      padding: 10px;
-      font-weight: bold;
-      box-sizing: border-box;
-      margin-bottom: -1px;
-    }
-
-    textarea {
-      height: 300px;
-      resize: none;
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-    }
-
-    .bottom-buttons {
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-
-    .bottom-buttons button {
-      background-color: blue;
-      color: white;
-      border: none;
-      padding: 8px 20px;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>회원 정보 수정</title>
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/Edit.css}">
+    <script th:src="@{/js/Edit.js}" defer></script>
 </head>
 <body>
-
+<div th:replace="layout/header :: header"></div>
 <div class="container">
-  <!-- 왼쪽 이미지 등록 영역 -->
-  <div class="left-box">
-    <div class="photo"></div>
-    <div class="btn-group">
-      <button type="button">등록</button>
-      <button type="button">삭제</button>
-    </div>
-  </div>
-
-  <!-- 오른쪽 폼 입력 영역 -->
-  <form class="form-box" th:action="@{/user/update}" th:object="${user}" method="post">
-    <input type="hidden" th:field="*{id}" />
-
-    <!-- 훈련기관 정보 -->
-    <div class="section">
-      <div class="form-row">
-        <div class="form-label">훈련기관</div>
-        <input type="text" th:field="*{instituteName}" />
-      </div>
-      <div class="form-row">
-        <div class="form-label">훈련과정</div>
-        <input type="text" th:field="*{courseName}" />
-      </div>
-      <div class="form-row">
-        <div class="form-label">훈련기간</div>
-        <input type="text" th:field="*{trainingPeriod}" />
-      </div>
+    <!-- 왼쪽 이미지 등록 영역 -->
+    <div class="left-box">
+        <div class="photo"></div>
+        <div class="btn-group">
+            <button type="button">등록</button>
+            <button type="button">삭제</button>
+        </div>
     </div>
 
-    <!-- 개인정보 -->
-    <div class="section">
-      <div class="section-title">개인정보</div>
-      <div class="form-row">
-        <div class="form-label">이름</div>
-        <input type="text" th:field="*{name}" />
-      </div>
-      <div class="form-row">
-        <div class="form-label">전화번호</div>
-        <input type="text" th:field="*{phone}" />
-      </div>
-      <div class="form-row">
-        <div class="form-label">이메일</div>
-        <input type="email" th:field="*{email}" />
-      </div>
-    </div>
+    <!-- 오른쪽 폼 입력 영역 -->
+    <form class="form-box" id="editForm">
+        <!-- 훈련기관 정보 -->
+        <div class="section">
+            <div class="form-row">
+                <div class="form-label">훈련기관</div>
+                <input type="text" name="instituteName" id="instituteName-input" />
+                <span id="instituteName-text" style="display:none;"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-label">훈련과정</div>
+                <input type="text" name="courseName" id="courseName-input" />
+                <span id="courseName-text" style="display:none;"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-label">훈련기간</div>
+                <input type="text" name="trainingPeriod" id="trainingPeriod-input" />
+                <span id="trainingPeriod-text" style="display:none;"></span>
+            </div>
+        </div>
 
-    <!-- 장학금 수령정보 -->
-    <div class="section">
-      <div class="section-title">장학금 수령정보</div>
-      <div class="form-row">
-        <div class="form-label">은행명</div>
-        <input type="text" th:field="*{bankName}" />
-      </div>
-      <div class="form-row">
-        <div class="form-label">계좌</div>
-        <input type="text" th:field="*{accountNumber}" />
-      </div>
-      <div class="form-row">
-        <div class="form-label">예금주</div>
-        <input type="text" th:field="*{accountHolder}" />
-      </div>
-    </div>
+        <!-- 개인정보 -->
+        <div class="section">
+            <div class="section-title">개인정보</div>
+            <div class="form-row">
+                <div class="form-label">이름</div>
+                <input type="text" name="name" id="name-input" />
+                <span id="name-text" style="display:none;"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-label">전화번호</div>
+                <input type="text" name="phone" id="phone-input" />
+                <span id="phone-text" style="display:none;"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-label">이메일</div>
+                <input type="email" name="email" id="email-input" />
+                <span id="email-text" style="display:none;"></span>
+            </div>
+        </div>
 
-    <!-- 수강평 -->
-    <div class="section">
-      <div class="section-title">수강평</div>
-      <div class="form-row">
-        <div class="form-label">훈련과정</div>
-        <select th:field="*{selectedCourse}">
-          <option value="">선택</option>
-          <option value="AI">AI 솔루션 개발</option>
-          <option value="Web">웹 개발</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <div class="form-label">설문회차</div>
-        <select th:field="*{sessionNumber}">
-          <option value="">선택</option>
-          <option value="1">1회차</option>
-          <option value="2">2회차</option>
-        </select>
-      </div>
+        <!-- 장학금 수령정보 -->
+        <div class="section">
+            <div class="section-title">장학금 수령정보</div>
+            <div class="form-row">
+                <div class="form-label">은행명</div>
+                <input type="text" name="bankName" id="bankName-input" />
+                <span id="bankName-text" style="display:none;"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-label">계좌</div>
+                <input type="text" name="accountNumber" id="accountNumber-input" />
+                <span id="accountNumber-text" style="display:none;"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-label">예금주</div>
+                <input type="text" name="accountHolder" id="accountHolder-input" />
+                <span id="accountHolder-text" style="display:none;"></span>
+            </div>
+        </div>
 
-      <div class="form-row column">
-        <textarea th:field="*{memo}" placeholder="텍스트를 입력하세요."></textarea>
-      </div>
-    </div>
+        <!-- 수강평 -->
+        <div class="section">
+            <div class="section-title">수강평</div>
+            <div class="form-row">
+                <div class="form-label">훈련과정</div>
+                <select name="selectedCourse" id="selectedCourse-input">
+                    <option value="">선택</option>
+                    <option value="AI">AI 솔루션 개발</option>
+                    <option value="Web">웹 개발</option>
+                </select>
+                <span id="selectedCourse-text" style="display:none;"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-label">설문회차</div>
+                <select name="sessionNumber" id="sessionNumber-input">
+                    <option value="">선택</option>
+                    <option value="1">1회차</option>
+                    <option value="2">2회차</option>
+                </select>
+                <span id="sessionNumber-text" style="display:none;"></span>
+            </div>
+            <div class="form-row textarea-row">
+                <textarea name="memo" id="memo-input" placeholder="텍스트를 입력하세요."></textarea>
+                <span id="memo-text" style="display:none;"></span>
+            </div>
+        </div>
 
-    <!-- 하단 버튼 -->
-    <div class="bottom-buttons">
-      <button type="submit">저장</button>
-      <button type="button">다음</button>
-    </div>
-  </form>
+        <!-- 하단 버튼 -->
+        <div class="bottom-buttons">
+            <button type="button" onclick="goNext()">다음</button>
+            <button type="button" id="saveBtn" onclick="saveAll()">저장</button>
+            <button type="button" id="editBtn" onclick="toggleEdit()" style="display: none;">수정</button>
+        </div>
+    </form>
 </div>
-
+<!--푸터-->
+<div th:replace="layout/footer :: footer"></div>
 </body>
 </html>
