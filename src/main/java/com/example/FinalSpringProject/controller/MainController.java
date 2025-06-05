@@ -20,3 +20,13 @@ class LifeRecordController {
         return "LifeRecord";
     }
 }
+
+
+@Controller
+class Edit {
+
+    @GetMapping("/Edit")
+    public String showEditPage() {
+        return "Edit";
+    }
+}
