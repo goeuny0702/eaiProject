@@ -15,7 +15,7 @@ public class MainController {
 @Controller
 class LifeRecordController {
 
-    @GetMapping("/LifeRecord")
+        @GetMapping("/LifeRecord")
     public String showLifeRecordPage() {
         return "LifeRecord";
     }

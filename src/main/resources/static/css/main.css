@@ -5,6 +5,11 @@ body {
   background-color: #f4f4f4;
 }
 
+.mainContainer {
+    margin: 0px auto 100px auto;
+
+}
+
 .banner {
   width: 80%;
   height: 180px;
