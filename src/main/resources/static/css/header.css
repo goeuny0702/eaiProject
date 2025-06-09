@@ -4,15 +4,26 @@
     box-sizing: border-box;
 }
 header {
-    width: 100%;
-    background-color:#ffffff;
+  width: 100%;
+      background-color: #ffffff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+body {
+    padding-top: 120px;
 }
 .bottom-section {
+    position: sticky;
+    top: 85px;
     background-color: #0000ff;
     display: flex;
     justify-content: center;
     gap: 40px;
-    padding: 15px 0;
+    padding: 8px 0;
+    z-index: 999;
 }
 .bottom-section button {
     background-color: #0000ff;
@@ -29,7 +40,7 @@ header {
 }
 .top-section {
     color: black;
-    padding: 15px 40px;
+    padding: 8px 40px;
 }
 .logo-section {
     display: flex;

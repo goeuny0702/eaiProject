@@ -1,5 +1,7 @@
 <html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
 <link rel="stylesheet" th:href="@{/css/header.css}">
+</head>
 <header th:fragment="header">
     <div class="top-section">
         <div class="logo-section">
@@ -16,7 +18,6 @@
     </div>
     <nav class="bottom-section">
         <button onclick="location.href='/admission'">입학 및 상담신청</button>
-        <button onclick="location.href='/jobs'">취업정보센터</button>
         <button onclick="location.href='/courses'">모집과정</button>
         <button onclick="location.href='/community'">커뮤니티</button>
     </nav>

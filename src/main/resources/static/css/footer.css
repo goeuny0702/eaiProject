@@ -4,6 +4,7 @@ footer {
   padding: 40px 20px;
   font-family: 'Noto Sans KR', sans-serif;
   width: 100%;
+  box-sizing:border-box;
 }
 
 .footer-container {
