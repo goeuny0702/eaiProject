@@ -117,14 +117,6 @@ body {
   color: #ccc;
 }
 
-.ai img {
-  width: 100%;
-  height: 400px;
-  object-fit: contain;
-  border-radius: 10px;
-  margin-bottom: 13px;
-  background:#fff;
-}
 
 .ai-title {
      font-size: 2rem;
@@ -142,21 +134,23 @@ body {
   color: #555;
   margin-bottom:16px;
 }
-.ai-image-wrapper {
-    width: 110%;
-    height:180px;
-    overflow: hidden;
-    border-radius: 18px;
-    margin-left: -5%;
-    margin-bottom: 16px;
-    background: #fff;
-    }
-}
+
 .ai-image-wrapper img {
     width: 100%;
     height:100%;
     border-radius: 18px;
-     object-fit: cover;
+    object-fit: contain;
+    display: block;
+    margin-bottom:16px;
+    background: #fff;
+    margin: 0 auto;
+}
+.ai-image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* 혹은 3 / 2 또는 4 / 3 도 가능 */
+  overflow: hidden;
+  border-radius: 18px;
+  margin-bottom: 16px;
 }
 
  .ai-overlay-text {
@@ -168,7 +162,12 @@ body {
    font-weight: bold;
    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
  }
-
+ .ai-progress {
+   padding: 10px;
+   background-color: #fff;
+   border-radius: 10px;
+   box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+ }
 
 .title,
 .panel-title {
@@ -212,4 +211,6 @@ body {
 .slide.active {
   opacity: 1;
   z-index: 1;
-}
+
+.ai-desc a {
+  text-decoration: none;
