@@ -1,4 +1,5 @@
 <html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" th:href="@{/css/header.css}">
 <header th:fragment="header">
     <div class="top-section">
         <div class="logo-section">
@@ -19,75 +20,4 @@
         <button onclick="location.href='/courses'">모집과정</button>
         <button onclick="location.href='/community'">커뮤니티</button>
     </nav>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        header {
-            width: 100%;
-            background-color:#ffffff;
-        }
-        .bottom-section {
-            background-color: #0000ff;
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 15px 0;
-        }
-        .bottom-section button {
-            background-color: #0000ff;
-            border: none;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
-        .bottom-section button:hover {
-            background-color: #0000ff;
-        }
-        .top-section {
-            color: black;
-            padding: 15px 40px;
-        }
-        .logo-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width:100%
-        }
-        .logo-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .logo-title img {
-            height: 50px;
-            max-width:150px;
-            object-fit:contain;
-        }
-        .login-links {
-        display: flex;
-        gap: 10px;
-        }
-
-        .login-links a {
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 16px;
-        padding: 6px 12px;
-        border-radius: 4px;
-        background-color: #ffffff;
-        color: black;
-        border: none;
-        transition: background-color 0.2s ease;
-        }
-
-        .login-links a:hover {
-        background-color: #DDDDDD;
-        }
-    </style>
 </header>
