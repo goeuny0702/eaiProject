@@ -12,7 +12,7 @@
 
 <div th:replace="layout/header :: header"></div>
 
-<!-- 배너 -->
+
 <div class="banner" id="bannerSlider">
     <div class="slide" th:style="'background-image: url(' + @{/image/banner1.jpg} + ')'"></div>
     <div class="slide" th:style="'background-image: url(' + @{/image/banner2.jpg} + ')'"></div>
@@ -26,10 +26,8 @@
     </div>
 </div>
 
-<!-- 2x2 메인 콘텐츠 -->
-<div class="main-grid">
 
-    <!-- 달력 -->
+<div class="main-grid">
     <div class="calendar-section box">
         <div class="calendar-header">
             <button onclick="changeMonth(-1)">◀</button>
@@ -82,5 +80,6 @@
     </div>
 </div>
 <div th:replace="layout/footer :: footer"></div>
+
 </body>
 </html>
