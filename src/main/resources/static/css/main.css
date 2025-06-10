@@ -1,221 +1,217 @@
-body {
-  font-family: 'Noto Sans KR', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
-}
+html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      background-color: #f4f4f4;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
 
-.mainContainer {
-    margin: 0px auto 13% auto;
+    .mainContainer {
+      margin: 1.5% auto 10% auto;
+      flex: 1;
+      width: 80%;
+      padding: 20px 0;
+    }
+    .banner {
+      width: 80%;
+      height: 180px;
+      margin: 0 auto 30px auto;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .banner-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.4);
+      color: white;
+      border: none;
+      font-size: 24px;
+      padding: 10px 15px;
+      cursor: pointer;
+      z-index: 2;
+      border-radius: 50%;
+      transition: background-color 0.3s;
+    }
+    .banner-btn:hover {
+      background-color: rgba(0,0,0,0.7);
+    }
+    .banner-btn.prev { left: 10px; }
+    .banner-btn.next { right: 10px; }
+    .indicator-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.6);
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .indicator-btn.active {
+      background-color: rgba(255, 255, 255, 1);
+    }
 
-}
+    /* 메인 그리드 */
+    .main-grid {
+      width: 80%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
 
-.banner {
-  width: 80%;
-  height: 180px;
-  margin:0 auto 30px auto;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  z-index: 0;
-}
+    /* 달력/AI 박스 */
+    .box {
+      background: white;
+      border-radius: 10px;
+      padding: 16px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .calendar-section {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 40px;
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .calendar-day, .calendar-date {
+      text-align: center;
+      padding: 6px;
+      border-radius: 5px;
+      font-size: 13px;
+    }
+    .calendar-date.today {
+      background-color: #007bff;
+      color: white;
+    }
+    .calendar-date.other-month {
+      color: #ccc;
+    }
 
-.banner-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.4);
-  color: white;
-  border: none;
-  font-size: 24px;
-  padding: 10px 15px;
-  cursor: pointer;
-  z-index: 2;
-  border-radius: 50%;
-  transition: background-color 0.3s;
-}
+    /* AI 영역 */
+    .ai-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 12px;
+      margin-top: 8px;
+      line-height: 1.3;
+    }
+    .ai-desc, .ai-period {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 16px;
+    }
+    .ai-image-wrapper img {
+      width: 100%;
+      border-radius: 18px;
+      object-fit: contain;
+      display: block;
+      margin-bottom: 16px;
+      background: #fff;
+    }
+    .ai-image-wrapper {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 18px;
+      margin-bottom: 16px;
+    }
 
-.banner-btn:hover {
-  background-color: rgba(0,0,0,0.7);
-}
+    .main-grid > .accordion {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
 
-.banner-btn.prev {
-  left: 10px;
-}
+    .main-grid > .calendar-section { grid-column: 1 / 2; }
+    .main-grid > .ai { grid-column: 2 / 3; }
+    .main-grid > .accordion:nth-of-type(3) { grid-column: 1 / 2; } /* 공지사항 */
+    .main-grid > .accordion:nth-of-type(4) { grid-column: 2 / 3; } /* 온라인 상담 */
 
-.banner-btn.next {
-  right: 10px;
-}
+    /* 아코디언 스타일 */
+    .accordion-header {
+      font-weight: bold;
+      background: #f0f0f0;
+      padding: 12px 16px;
+      border-radius: 8px 8px 0 0;
+    }
 
-.indicator-btn {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.6);
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
+    .accordion-item {
+      border: 1px solid #ddd;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: #fff;
+    }
 
-.indicator-btn.active {
-  background-color: rgba(255, 255, 255, 1);
-}
+    .accordion-title {
+      padding: 12px 16px;
+      background: #fafafa;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.main-grid {
-  width:80%;
-  margin:0 auto;
-  display: grid;
-  grid-template-areas:
-    "calender ai"
-    "notice consult";
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  padding:0
-}
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      background: #fff;
+      transition: max-height 0.4s ease;
+      padding: 0 16px;
+    }
 
-.box {
-  background: white;
-  border-radius: 10px;
-  padding: 16px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+    .accordion-content p {
+      margin: 10px 0;
+    }
 
-.calendar-section {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  padding: 40px;
-  margin-right: 12px;
-}
+    .accordion-item.active .accordion-content {
+      max-height: 200px; /* 필요에 따라 조정 */
+      padding: 10px 16px;
+    }
 
-.calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 6px;
-  margin-top: 10px;
-}
-
-.calendar-day,
-.calendar-date {
-  text-align: center;
-  padding: 6px;
-  border-radius: 5px;
-  font-size: 13px;
-}
-
-.calendar-date.today {
-  background-color: #007bff;
-  color: white;
-}
-
-.calendar-date.other-month {
-  color: #ccc;
-}
+    .toggle-btn {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
 
-.ai-title {
-     font-size: 2rem;
-     font-weight: bold;
-     color: #1a1a1a;
-     text-align: center;
-     margin-bottom: 12px;
-     margin-top: 8px;
-     line-height: 1.3;
-}
-
-.ai-desc,
-.ai-period {
-  font-size: 14px;
-  color: #555;
-  margin-bottom:16px;
-}
-
-.ai-image-wrapper img {
-    width: 100%;
-    height:100%;
-    border-radius: 18px;
-    object-fit: contain;
-    display: block;
-    margin-bottom:16px;
-    background: #fff;
-    margin: 0 auto;
-}
-.ai-image-wrapper {
-  width: 100%;
-  aspect-ratio: 16 / 9; /* 혹은 3 / 2 또는 4 / 3 도 가능 */
-  overflow: hidden;
-  border-radius: 18px;
-  margin-bottom: 16px;
-}
-
- .ai-overlay-text {
-   position: absolute;
-   top: 20px;
-   left: 20px;
-   color: white;
-   font-size: 10px;
-   font-weight: bold;
-   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
- }
- .ai-progress {
-   padding: 10px;
-   background-color: #fff;
-   border-radius: 10px;
-   box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
- }
-
-.title,
-.panel-title {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.item,
-.notice-item {
-  background: #f5f5f5;
-  border-radius: 6px;
-  padding: 8px;
-  margin-bottom: 6px;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.bottom-panels {
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.bottom-panels .panel-box {
-  width: 45%;
-}
-
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-  opacity: 1;
-  z-index: 1;
-
-.ai-desc a {
-  text-decoration: none;
+    /* 배너 슬라이더 */
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
