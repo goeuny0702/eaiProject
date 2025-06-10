@@ -37,6 +37,7 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   padding: 40px;
   margin-right: 12px;
+  text-align: center;
 }
 
 .calendar-header {
@@ -67,4 +68,11 @@ body {
 
 .calendar-date.other-month {
   color: #ccc;
+}
+
+.student-status{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
 }
