@@ -219,3 +219,33 @@ body {
 
 .ai-desc a {
   text-decoration: none;
+  }
+  .accordion {
+    width: 100%;
+  }
+
+  .accordion-header {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 12px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s;
+  }
+
+  .accordion-header:hover {
+    background: #e9ecef;
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .accordion.active .accordion-content {
+    max-height: 500px; /* 충분한 높이 */
+    padding: 10px 0;
+  }
+
+

@@ -1,0 +1,351 @@
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mainContainer {
+    flex: 1;
+    margin: 0px auto 100px auto;
+  }
+
+  .banner {
+    width: 100%;
+    height: 220px;
+    margin: 0 auto 30px auto;
+    position: relative;
+    padding: 0 100px;
+    box-sizing: border-box;
+  }
+
+  .banner-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    object-fit: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slide.active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .banner-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+  }
+
+  .banner-btn.prev {
+    left: 110px;
+  }
+
+  .banner-btn.next {
+    right: 110px;
+  }
+
+  .indicator-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .indicator-btn.active {
+    background-color: rgba(255, 255, 255, 1);
+  }
+
+  .main-grid {
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding: 0 100px;
+    box-sizing: border-box;
+  }
+
+  .main-grid > div {
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+  }
+
+  .box {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  .calendar-section {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 35px;
+  }
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .calendar-day,
+  .calendar-date {
+    text-align: center;
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+
+  .calendar-date.today {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .calendar-date.other-month {
+    color: #ccc;
+  }
+
+  .ai-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #1a1a1a;
+      text-align: center;
+      margin-bottom: 12px;
+      margin-top: 8px;
+      line-height: 1.3;
+  }
+
+  .ai-desc,
+  .ai-period {
+    font-size: 14px;
+    color: #555;
+    margin-bottom:16px;
+  }
+
+  .ai-image-wrapper img {
+      width: 100%;
+      height:100%;
+      border-radius: 18px;
+      object-fit: contain;
+      display: block;
+      margin-bottom:16px;
+      background: #fff;
+      margin: 0 auto;
+  }
+  .ai-image-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9; 
+    overflow: hidden;
+    border-radius: 18px;
+    margin-bottom: 16px;
+  }
+
+  .ai-overlay-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+  }
+  .ai-progress {
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    height: calc(100% - 60px);
+  }
+
+  .title,
+  .panel-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .item,
+  .notice-item {
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bottom-panels {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .bottom-panels .panel-box {
+    width: 45%;
+  }
+
+  .ai-desc a {
+    text-decoration: none;
+  }
+
+  .accordion-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .accordion {
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .accordion-header {
+    padding: 15px;
+    background: #f8f9fa;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .accordion-header:hover {
+    background: #e9ecef;
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 20px;
+    height: calc(100% - 60px);
+  }
+
+  .accordion-content .item {
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .accordion-content .item:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-icon {
+    transition: transform 0.3s ease;
+  }
+
+  /* Footer 고정을 위한 스타일 */
+  footer {
+    margin-top: auto;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 20px 0;
+    position: relative;
+    bottom: 0;
+  }
+
+  .faq-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #ffe066;
+    border-radius: 20px;
+    padding: 30px 20px;
+  }
+
+  .faq-item {
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .faq-question {
+    padding: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .faq-question::after {
+    content: '▼';
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    transition: transform 0.2s;
+  }
+
+  .faq-item.active .faq-question::after {
+    content: '▲';
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    background: #fffbe6;
+    color: #333;
+    padding: 0 20px;
+    font-size: 15px;
+    transition: max-height 0.3s, padding 0.3s;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 300px;
+    padding: 16px 20px 20px 20px;
+  }

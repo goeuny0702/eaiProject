@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+<script th:src="@{/js/main.js}"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>메인 페이지</title>
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+
+<div class="mainContainer">
+    <!-- 배너 -->
+    <div class="banner" id="bannerSlider">
+        <div class="banner-inner">
+            <div class="slide" th:style="'background-image: url(' + @{/image/banner1.jpg} + ')'"></div>
+            <div class="slide" th:style="'background-image: url(' + @{/image/banner2.jpg} + ')'"></div>
+            <div class="slide" th:style="'background-image: url(' + @{/image/banner3.jpg} + ')'"></div>
+        </div>
+        <button class="banner-btn prev" onclick="prevSlide()">&#10094;</button>
+        <button class="banner-btn next" onclick="nextSlide()">&#10095;</button>
+
+        <div id="indicators" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+        display: flex; gap: 10px; z-index: 3;">
+        </div>
+    </div>
+
+    <!-- 2x2 메인 콘텐츠 -->
+    <div class="main-grid">
+        <!-- 달력 -->
+        <div class="calendar-section box">
+            <div class="calendar-header">
+                <button onclick="changeMonth(-1)">◀</button>
+                <h2 id="monthYear">2025년 6월</h2>
+                <button onclick="changeMonth(1)">▶</button>
+            </div>
+            <div class="calendar-grid" id="calendarDays">
+                <div class="calendar-day">일</div>
+                <div class="calendar-day">월</div>
+                <div class="calendar-day">화</div>
+                <div class="calendar-day">수</div>
+                <div class="calendar-day">목</div>
+                <div class="calendar-day">금</div>
+                <div class="calendar-day">토</div>
+            </div>
+            <div class="calendar-grid" id="calendarDates"></div>
+        </div>
+
+        <div class="ai box">
+            <div class="ai-title">현재 진행 중인 과정</div>
+            <div class="ai-progress">
+                <div class="ai-image-wrapper">
+                    <img src="/image/image.png" alt="AI Solution Image">
+                </div>
+                <div class="ai-desc">
+                    <strong>과정명</strong><br>
+                    <a href="#">차세대 AI 예측 Solution 개발(자바,파이썬,RPA) (9회차)</a>
+                </div>
+                <div class="ai-period">
+                    <strong>교육기간</strong><br>
+                    2025.06.25 ~ 2025.12.18
+                </div>
+            </div>
+        </div>
+
+        <!-- 공지사항 -->
+        <div class="accordion box">
+            <div class="accordion-header">
+                <div class="title">공지사항</div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="item">공지사항1 가나다라마바사...</div>
+                <div class="item">공지사항2 가나다라마바사...</div>
+            </div>
+        </div>
+
+        <!-- 온라인 상담 -->
+        <div class="accordion box">
+            <div class="accordion-header">
+                <div class="title">온라인 상담</div>
+                <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+                <div class="item">상담1 가나다라마바사...</div>
+                <div class="item">상담2 가나다라마바사...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout/footer :: footer"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const accordions = document.querySelectorAll('.accordion');
+    
+    accordions.forEach(accordion => {
+        const header = accordion.querySelector('.accordion-header');
+        const content = accordion.querySelector('.accordion-content');
+        const icon = accordion.querySelector('.accordion-icon');
+        
+        header.addEventListener('click', () => {
+            const isOpen = content.style.maxHeight;
+            
+            // 모든 아코디언 닫기
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                item.style.maxHeight = null;
+            });
+            document.querySelectorAll('.accordion-icon').forEach(item => {
+                item.textContent = '▼';
+            });
+
+            if (!isOpen) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.textContent = '▲';
+            }
+        });
+    });
+
+
+    document.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', function() {
+            const item = this.parentElement;
+
+            document.querySelectorAll('.faq-item').forEach(i => {
+                if(i !== item) i.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        });
+    });
+});
+</script>
+</body>
+</html> 

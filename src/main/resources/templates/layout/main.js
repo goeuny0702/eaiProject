@@ -1,26 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // 📌 [1] FAQ 아코디언
-  const btns = document.querySelectorAll(".faq__btn");
-
-  btns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const faqItem = btn.parentNode;
-      const isActive = faqItem.classList.contains("active");
-
-      removeActiveClasses();
-      if (!isActive) {
-        faqItem.classList.add("active");
-      }
-    });
-  });
-
-  function removeActiveClasses() {
-    btns.forEach((btn) => {
-      btn.parentNode.classList.remove("active");
-    });
-  }
-
-  // 📅 [2] 캘린더 렌더링
+  // 📅 캘린더 렌더링
   const monthYear = document.getElementById('monthYear');
   const calendarDates = document.getElementById('calendarDates');
   let currentDate = new Date();
@@ -62,11 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
   window.changeMonth = function(offset) {
     currentDate.setMonth(currentDate.getMonth() + offset);
     renderCalendar(currentDate);
-  };
+  }
 
   renderCalendar(currentDate);
 
-  // 🎞️ [3] 배너 슬라이더
+  // 🎞️ 배너 슬라이더
   let currentSlide = 0;
   const slides = document.querySelectorAll('#bannerSlider .slide');
   const indicatorContainer = document.getElementById('indicators');
@@ -78,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener('click', () => {
       currentSlide = index;
       showSlide(currentSlide);
+      updateIndicators();
     });
     indicatorContainer.appendChild(btn);
   });
@@ -90,6 +70,16 @@ document.addEventListener("DOMContentLoaded", function () {
     updateIndicators();
   }
 
+  window.nextSlide = function() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  window.prevSlide = function() {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
   function updateIndicators() {
     const indicators = document.querySelectorAll('.indicator-btn');
     indicators.forEach((dot, i) => {
@@ -97,16 +87,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  window.nextSlide = function() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  };
-
-  window.prevSlide = function() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-  };
-
   showSlide(currentSlide);
-  setInterval(nextSlide, 5000);
+  setInterval(window.nextSlide, 5000);
 
+  // 기존 아코디언 (공지/상담 등)
+  const headers = document.querySelectorAll(".accordion-header");
+  headers.forEach(header => {
+    header.addEventListener("click", function () {
+      const item = this.parentElement;
+      item.classList.toggle("active");
+    });
+  });
+
+  // FAQ 카드형 아코디언
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', function() {
+      const item = this.parentElement;
+      item.classList.toggle('active');
+      // 하나만 열고 싶으면 아래 주석 해제
+      // document.querySelectorAll('.faq-item').forEach(i => { if(i!==item) i.classList.remove('active'); });
+    });
+  });
+}); 
