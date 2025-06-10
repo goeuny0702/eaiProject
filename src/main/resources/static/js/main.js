@@ -90,12 +90,4 @@ document.addEventListener("DOMContentLoaded", function () {
   showSlide(currentSlide);
   setInterval(nextSlide, 5000);
 
-  // 아코디언
-  const headers = document.querySelectorAll(".accordion-header");
-  headers.forEach(header => {
-    header.addEventListener("click", function () {
-      const item = this.parentElement;
-      item.classList.toggle("active");
-    });
-  });
 });
