@@ -30,3 +30,12 @@ class Edit {
         return "Edit";
     }
 }
+
+@Controller
+class admissionform {
+
+    @GetMapping("/admission-form")
+    public String showEditPage() {
+        return "admission-form";
+    }
+}
