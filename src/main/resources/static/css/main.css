@@ -153,6 +153,7 @@ html, body {
   font-size: 0.875rem;
   color: #555;
   margin-bottom: 1rem;
+  margin-left: 0.5rem;
 }
 .ai-image-wrapper img {
   width: 100%;
@@ -224,3 +225,4 @@ html, body {
   font-size: 1rem;
   cursor: pointer;
 }
+

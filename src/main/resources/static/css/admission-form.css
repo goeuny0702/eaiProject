@@ -1,0 +1,107 @@
+    .admissionContainer {
+        width: 1000px;
+        margin: 7% auto 13% auto;
+
+
+    }
+
+    .firstContainer {
+        margin-bottom: 50px;
+
+    }
+
+    .form-group {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
+
+    .form-group label {
+      text-align: center;
+      font-weight: normal;
+      flex: 1;
+      padding: 10px;
+      background: #f4f4f4;
+      border-right: 1px solid #ccc;
+    }
+
+    .form-group select {
+      flex: 2;
+      border: none;
+      padding: 10px;
+      appearance: none; /* 기본 화살표 제거 */
+      background: url('data:image/svg+xml;utf8,<svg fill="gray" height="24" width="24" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+      background-color: #fff;
+      background-size: 15px;
+    }
+
+    .basicContainer {
+        margin-bottom: 50px
+    }
+
+    .basic-info-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .basic-info-table th,
+    .basic-info-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .basic-info-table th {
+      font-weight: normal;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    .basic-info-table input[type="text"],
+    .basic-info-table input[type="email"] {
+      width: 95%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .basic-info-table input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .terms-box {
+      margin: 10px 0px;
+      height: 180px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .notice-box {
+      border: 1px solid #ccc;
+      background-color: #f0f0f0;
+      padding: 20px;
+      margin: 20px 0px;
+    }
+
+    .button-container {
+      text-align: right;
+      margin-top: 20px;
+    }
+
+    .submit-btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+
+
