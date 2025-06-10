@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>훈련과정 일정 캘린더</title>
+    <link rel="stylesheet" href="/css/calendar.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+
+<div class="container">
+    <h1>공지 및 일정 관리 <span class="calendar-icon">📅</span></h1>
+
+    <div class="calendar-header-bar">
+        <div class="month-nav">
+            <button onclick="changeMonth(-1)">◀</button>
+            <span id="monthLabel">6월</span>
+            <button onclick="changeMonth(1)">▶</button>
+        </div>
+        <div class="selector-wrap">
+            <label for="courseSelector">훈련과정 선택</label>
+            <select id="courseSelector">
+                <option value="9">차세대 AI 예측 Solution 개발 (9회차)</option>
+                <option value="10">차세대 AI 예측 Solution 개발 (10회차)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="calendar">
+        <div class="day-names">
+            <div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div><div>일</div>
+        </div>
+        <div class="days" id="calendarDays"></div>
+    </div>
+</div>
+
+<div th:replace="layout/footer :: footer"></div>
+<script src="/js/calendar.js"></script>
+</body>
+</html>
