@@ -9,14 +9,14 @@ html, body {
     }
 
     .mainContainer {
-      margin: 1.8% auto 10% auto;
+      margin: 1.5% auto 10% auto;
       flex: 1;
       width: 80%;
       padding: 20px 0;
     }
     .banner {
       width: 80%;
-      height: 180px;
+      height: 215px;
       margin: 0 auto 30px auto;
       background-size: cover;
       background-position: center;
