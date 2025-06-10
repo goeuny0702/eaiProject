@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderCalendar(date) {
         const year = date.getFullYear();
         const month = date.getMonth();
-        monthYear.textContent = `${year}년 ${month + 1}월`;
+        monthYear.textContent = `${month + 1}월`;
 
         const firstDay = new Date(year, month, 1).getDay();
         const lastDate = new Date(year, month + 1, 0).getDate();
@@ -35,11 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         calendarDates.innerHTML = html;
-    }
-
-    function changeMonth(offset) {
-        currentDate.setMonth(currentDate.getMonth() + offset);
-        renderCalendar(currentDate);
     }
 
     renderCalendar(currentDate);
