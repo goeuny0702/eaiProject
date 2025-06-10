@@ -7,18 +7,18 @@ body {
 
 .main-container {
     width: 100%;
-    margin: 7% auto 13% auto;
+    margin: 7% auto 7% auto;
 
 }
 
-.main-grid {
-  width:80%;
+.top-grid {
+  width:90%;
   margin:0 auto;
   display: grid;
   grid-template-areas:
     "calender ai"
     "notice consult";
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 5fr 3fr;
   gap: 20px;
   padding:0
 }
@@ -35,14 +35,33 @@ body {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  padding: 40px;
-  margin-right: 12px;
+  padding: 0px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+#p-calendar{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 32px;
+    background-color: #ddd;
 }
 
 .calendar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+#monthYear{
+    align-content: center;
+    height: 25px;
+    width: 50px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-size: 15px;
+    margin-top: 10px;
 }
 
 .calendar-grid {
@@ -67,4 +86,37 @@ body {
 
 .calendar-date.other-month {
   color: #ccc;
+}
+
+.student-status{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.bottom-grid {
+  width:90%;
+  margin:0 auto;
+  display: grid;
+  grid-template-areas:
+    "calender ai"
+    "notice consult";
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding:0
+}
+
+.score-monitor{
+    padding: 20px 15px 40px 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.job-status{
+    padding: 20px 15px 40px 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
 }
