@@ -38,7 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
       currentDate.setMonth(currentDate.getMonth() + offset);
       renderCalendar(currentDate);
     }
-    renderCalendar(currentDate);
+    window.changeMonth = changeMonth;
+
 
     // 배너
     let currentSlide = 0;
