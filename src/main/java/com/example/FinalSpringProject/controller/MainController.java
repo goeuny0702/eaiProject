@@ -30,3 +30,11 @@ class Edit {
         return "Edit";
     }
 }
+
+@Controller
+class Calendar{
+    @GetMapping("/Calendar")
+    public String showCalendarPage() {
+        return "Calendar"; // 이거 넣음 templates/calendar.html
+    }
+}
