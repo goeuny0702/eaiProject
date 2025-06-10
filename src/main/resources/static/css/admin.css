@@ -1,0 +1,70 @@
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.main-container {
+    width: 100%;
+    margin: 7% auto 13% auto;
+
+}
+
+.main-grid {
+  width:80%;
+  margin:0 auto;
+  display: grid;
+  grid-template-areas:
+    "calender ai"
+    "notice consult";
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding:0
+}
+
+
+.box {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.calendar-section {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 40px;
+  margin-right: 12px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.calendar-day,
+.calendar-date {
+  text-align: center;
+  padding: 6px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.calendar-date.today {
+  background-color: #007bff;
+  color: white;
+}
+
+.calendar-date.other-month {
+  color: #ccc;
+}

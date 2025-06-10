@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" th:href="@{/css/admin.css}">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+<script th:src="@{/js/admin.js}"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 페이지</title>
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+<div class="main-container">
+    <div class="main-grid">
+        <div class="student-status">
+            학생 현황
+        </div>
+        <div class="calendar-section box">
+            <div class="calendar-header">
+                <p>공지 및 일정관리 icon</p>
+                <button onclick="changeMonth(-1)">◀</button>
+                <h2 id="monthYear">2025년 6월</h2>
+                <button onclick="changeMonth(1)">▶</button>
+            </div>
+            <div class="calendar-grid" id="calendarDays">
+                <div class="calendar-day">일</div>
+                <div class="calendar-day">월</div>
+                <div class="calendar-day">화</div>
+                <div class="calendar-day">수</div>
+                <div class="calendar-day">목</div>
+                <div class="calendar-day">금</div>
+                <div class="calendar-day">토</div>
+            </div>
+            <div class="calendar-grid" id="calendarDates"></div>
+        </div>
+
+        <div class="score-monitor">
+            출결 및 성적 모니터링
+        </div>
+
+        <div class="job-status">
+            취업 및 진로지원 현황
+        </div>
+    </div>
+</div>
+
+<!-- 여기 추가 가능 -->
+
+<div th:replace="layout/footer :: footer"></div>
+
+</body>
+</html>
