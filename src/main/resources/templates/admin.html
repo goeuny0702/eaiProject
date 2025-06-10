@@ -11,35 +11,35 @@
 <body>
 <div th:replace="layout/header :: header"></div>
 <div class="main-container">
-    <div class="main-grid">
+    <div class="top-grid">
         <div class="student-status">
-            학생 현황
+            <p>학생 현황 🅽</p>
+            <p>강의 및 교육과정 관리 🗂️</p>
         </div>
         <div class="calendar-section box">
-            <p style="background-color: #ddd">공지 및 일정관리 icon</p>
+            <p id="p-calendar">공지 및 일정관리 📅</p>
             <div class="calendar-header">
-                <button onclick="changeMonth(-1)">◀</button>
                 <h2 id="monthYear">2025년 6월</h2>
-                <button onclick="changeMonth(1)">▶</button>
             </div>
             <div class="calendar-grid" id="calendarDays">
-                <div class="calendar-day">일</div>
-                <div class="calendar-day">월</div>
-                <div class="calendar-day">화</div>
-                <div class="calendar-day">수</div>
-                <div class="calendar-day">목</div>
-                <div class="calendar-day">금</div>
-                <div class="calendar-day">토</div>
+                <div class="calendar-day">Mo</div>
+                <div class="calendar-day">Tu</div>
+                <div class="calendar-day">We</div>
+                <div class="calendar-day">Th</div>
+                <div class="calendar-day">Fr</div>
+                <div class="calendar-day">Sa</div>
+                <div class="calendar-day">Su</div>
             </div>
             <div class="calendar-grid" id="calendarDates"></div>
         </div>
-
+    </div>
+    <div class="bottom-grid">
         <div class="score-monitor">
-            출결 및 성적 모니터링
+            <p style="height: 300px;">출결 및 성적 모니터링 ✅</p>
         </div>
 
         <div class="job-status">
-            취업 및 진로지원 현황
+            <p style="height: 300px;">취업 및 진로지원 현황 📊</p>
         </div>
     </div>
 </div>
