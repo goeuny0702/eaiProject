@@ -1,7 +1,6 @@
 const data = [
     {
         title: "차세대 AI 융합 Solution 개발 (자바, 파이썬, RPA) (9회차)",
-        count: 2,
         students: 11,
         max: 20,
         over: "미초과",
@@ -56,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
     data.forEach(item => {
       grid.innerHTML += `
         <div class="title-cell">${item.title}</div>
-        <div>${item.count}</div>
         <div>${item.students}</div>
         <div>${item.max}</div>
         <div>${item.over}</div>
@@ -64,4 +62,38 @@ document.addEventListener("DOMContentLoaded", function () {
         <div>${item.teacher}</div>
       `;
     });
+
+  document.querySelectorAll('.accordion-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // 버튼 클릭 시 외부 클릭 이벤트 방지
+
+      const content = btn.nextElementSibling;
+      const isOpen = content.classList.contains('open');
+
+      // 먼저 모든 아코디언 닫기 (하나만 열리게 하려면)
+      document.querySelectorAll('.accordion-content.open').forEach((el) => {
+        el.classList.remove('open');
+        el.style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        content.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+    });
+
+    // 아코디언 안쪽 누르면 닫히지 않게
+    btn.nextElementSibling.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+
+  // 다른 영역 클릭 시 열려 있는 아코디언 닫기
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.accordion-content.open').forEach((el) => {
+      el.classList.remove('open');
+      el.style.maxHeight = null;
+    });
+  });
+
 });
