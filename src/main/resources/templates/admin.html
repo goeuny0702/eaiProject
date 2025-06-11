@@ -12,9 +12,37 @@
 <div th:replace="layout/header :: header"></div>
 <div class="main-container">
     <div class="top-grid">
-        <div class="student-status">
-            <p>학생 현황 🅽</p>
-            <p>강의 및 교육과정 관리 🗂️</p>
+        <div class="student-stats">
+            <p class="title student-status">학생 현황 🅽</p>
+            <div class="stats-grid">
+                <div class="stats gray">
+                    <div class="label">중도 탈락자 수</div>
+                    <div class="value">10</div>
+                </div>
+                <div class="stats white">
+                    <div class="label">신입생 수</div>
+                    <div class="value">30</div>
+                </div>
+                <div class="stats blue-light">
+                    <div class="label">출석률</div>
+                    <div class="value">98%</div>
+                </div>
+                <div class="stats blue">
+                    <div class="label">졸업예정자</div>
+                    <div class="value">20</div>
+                </div>
+            </div>
+            <p class="title class-manage">강의 및 교육과정 관리 🗂️</p>
+            <div class="class-grid" id="classGrid">
+                <div class="header">강좌명</div>
+                <div class="header">개설강좌수</div>
+                <div class="header">수강인원</div>
+                <div class="header">정원</div>
+                <div class="header">인원초과 여부</div>
+                <div class="header">강사배정여부</div>
+                <div class="header">강사명</div>
+            </div>
+
         </div>
         <div class="calendar-section box">
             <p id="p-calendar">공지 및 일정관리 📅</p>

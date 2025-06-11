@@ -1,3 +1,15 @@
+const data = [
+    {
+        title: "차세대 AI 융합 Solution 개발 (자바, 파이썬, RPA) (9회차)",
+        count: 2,
+        students: 11,
+        max: 20,
+        over: "미초과",
+        assigned: "있음",
+        teacher: "임승현"
+    }
+];
+
 document.addEventListener("DOMContentLoaded", function () {
     const monthYear = document.getElementById('monthYear');
     const calendarDates = document.getElementById('calendarDates');
@@ -38,4 +50,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     renderCalendar(currentDate);
+
+    const grid = document.getElementById("classGrid");
+
+    data.forEach(item => {
+      grid.innerHTML += `
+        <div class="title-cell">${item.title}</div>
+        <div>${item.count}</div>
+        <div>${item.students}</div>
+        <div>${item.max}</div>
+        <div>${item.over}</div>
+        <div>${item.assigned}</div>
+        <div>${item.teacher}</div>
+      `;
+    });
 });

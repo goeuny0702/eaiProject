@@ -18,7 +18,7 @@ body {
   grid-template-areas:
     "calender ai"
     "notice consult";
-  grid-template-columns: 5fr 3fr;
+  grid-template-columns: 4fr 3fr;
   gap: 20px;
   padding:0
 }
@@ -88,12 +88,102 @@ body {
   color: #ccc;
 }
 
-.student-status{
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: white;
+.student-stats {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
+
+.stats-grid{
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+
+.stats {
+
+  width: 180px;
+  height: 140px;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.label {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 40px;
+}
+
+.gray {
+  background-color: #b3b3b3;
+  color: white;
+}
+
+.white {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+}
+
+.blue-light {
+  background-color: #add8ff;
+  color: white;
+}
+
+.blue {
+  background-color: #0033cc;
+  color: white;
+}
+
+.title{
+    font-size: 30px;
+    margin-left: 45px;
+}
+
+.class-manage {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.class-grid {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 240px 110px 90px 60px 130px 130px 100px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.class-grid div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.class-grid .header {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.sub {
+  font-size: 12px;
+  color: #666;
+}
+
+.title-cell {
+    font-size: 10px;
+}
+
 
 .bottom-grid {
   width:90%;
