@@ -48,10 +48,12 @@ class admissionform{
 }
 
 @Controller
-class Course{
+class Course {
     @GetMapping("/Course")
     public String showCalendarPage() {
         return "Course";
+    }
+}
 
 class viewDetails{
     @GetMapping("/view-Details")
