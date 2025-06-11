@@ -38,3 +38,11 @@ class Calendar{
         return "Calendar"; // 이거 넣음 templates/calendar.html
     }
 }
+
+@Controller
+class admissionform{
+    @GetMapping("/admission-form")
+    public String showCalendarPage() {
+        return "admission-form"; // 이거 넣음 templates/calendar.html
+    }
+}
