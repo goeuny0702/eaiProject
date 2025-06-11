@@ -1,3 +1,81 @@
-h2{
-margin-top: 60px;
+.course-table {
+  margin: 20px auto;
 }
+.title-cell {
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  padding-left: 5px;
+}
+
+.class-grid {
+  max-width:1200px;
+  display: grid;
+  grid-template-columns: 550px 120px 180px 230px 230px 190px;
+  text-align: center;
+  margin:20px auto 45px auto;
+  justify-content: center;
+}
+
+.class-grid div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.class-grid .header {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  font-size: 18px;
+}
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1520px;
+  margin: 63px auto 20px auto;
+  padding: 0 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  max-width:1520px;
+}
+
+.course-count {
+  font-size: 16px;
+  color: #333;
+}
+
+.num-btn {
+  padding: 6px 12px;
+  font-size: 16px;
+  width: 40px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid #333;
+  background-color: transparent;
+  color: #333;
+  margin: 0 5px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.arrow-btn {
+  padding: 6px 10px;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #999;
+  color: #666;
+  margin: 0 3px;
+
+}
+
+
+
+

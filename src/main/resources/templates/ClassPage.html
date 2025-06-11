@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
-<link rel="stylesheet" th:href="@{/css/ClassPage.css}">
-<link rel="stylesheet" th:href="@{/css/header.css}">
-<link rel="stylesheet" th:href="@{/css/footer.css}">
 <head>
+    <link rel="stylesheet" th:href="@{/css/ClassPage.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <script th:src="@{/js/classpage.js}"></script>
+
     <meta charset="UTF-8">
     <title>강의 상세페이지</title>
 </head>
 <body>
 
 <div th:replace="layout/header :: header"></div>
-<h2>강의 및 교육과정 관리</h2>
+<div class="title-container">
+    <p class="title">강의 및 교육과정 관리</p>
+    <span class="course-count">강좌수: 47개</span>
+</div>
+
+
+<div class="class-grid" id="classGrid">
+    <div class="header">교육과정</div>
+    <div class="header">수강인원</div>
+    <div class="header">정원</div>
+    <div class="header">정원초과 여부</div>
+    <div class="header">강사배정여부</div>
+    <div class="header">강사명</div>
+</div>
+<div class="page-buttons" style="text-align:center; margin:20px 0;">
+    <button type="button" class="arrow-btn" onclick="prevPage()">&lt;</button>
+    <button type="button" class="num-btn" onclick="showPage(1)">1</button>
+    <button type="button" class="num-btn" onclick="showPage(2)">2</button>
+    <button type="button" class="num-btn" onclick="showPage(3)">3</button>
+    <button type="button" class="arrow-btn" onclick="nextPage()">&gt;</button>
+</div>
+
 
 <div th:replace="layout/footer :: footer"></div>
-
 
 </body>
 </html>
