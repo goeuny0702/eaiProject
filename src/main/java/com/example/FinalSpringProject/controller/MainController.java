@@ -46,3 +46,11 @@ class admissionform{
         return "admission-form"; // 이거 넣음 templates/calendar.html
     }
 }
+
+@Controller
+class viewDetails{
+    @GetMapping("/view-Details")
+    public String showCalendarPage() {
+        return "view-Details"; // 이거 넣음 templates/calendar.html
+    }
+}
