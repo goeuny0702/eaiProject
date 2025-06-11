@@ -42,7 +42,7 @@ class Calendar{
 @Controller
 class admissionform{
     @GetMapping("/admission-form")
-    public String showCalendarPage() {
+    public String showadmissionformPage() {
         return "admission-form"; // 이거 넣음 templates/calendar.html
     }
 }
@@ -50,7 +50,7 @@ class admissionform{
 @Controller
 class viewDetails{
     @GetMapping("/view-Details")
-    public String showCalendarPage() {
+    public String showviewDetailsPage() {
         return "view-Details"; // 이거 넣음 templates/calendar.html
     }
 }
