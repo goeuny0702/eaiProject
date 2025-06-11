@@ -9,13 +9,14 @@
       margin: 7% auto 3% auto;
       width: 1400px;
       border: 1px solid #ddd;
-      padding: 70px;
+      padding: 70px 100px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .tableContainer h1 {
       text-align: center;
-      font-size: 45px;
+      font-size: 2.8rem;
+      font-weight: 900;
       margin-bottom: 35px;
     }
 
@@ -26,19 +27,23 @@
     }
 
     .tableContainer th {
-          background-color: none;
-          font-weight: bold;
-          font-size: 1.7rem;
-          width: 350px;
+      background-color: none;
+      font-weight: 900;
+      font-size: 1.7rem;
+      width: 350px;
+      text-align: left;
+      border-bottom: 2px solid #575757;
+      padding: 15px 10px;
     }
 
-    .tableContainer th,
     .tableContainer td {
-      border-bottom: 2px solid #575757;
-      padding: 13px 10px;
+      background-color: none;
+      font-weight: 900;
+      font-size: 1.7rem;
+      width: 350px;
       text-align: left;
-      font-size: 1.5rem;
-      font-weight: bold;
+      border-bottom: 2px solid #575757;
+      padding: 15px 10px;
     }
 
     .textContainer {
@@ -47,7 +52,8 @@
 
     .textContainer p {
       margin: 10px;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      font-weight: 500;
     }
 
     .btn-container {
