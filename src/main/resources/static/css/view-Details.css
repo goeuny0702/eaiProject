@@ -1,0 +1,78 @@
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+      background-color: #fff;
+      color: #333;
+    }
+
+    .mainContainer {
+      margin: 7% auto 3% auto;
+      width: 1400px;
+      border: 1px solid #ddd;
+      padding: 70px 100px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .tableContainer h1 {
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 900;
+      margin-bottom: 35px;
+    }
+
+    .tableContainer table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px 0px;
+    }
+
+    .tableContainer th {
+      background-color: none;
+      font-weight: 900;
+      font-size: 1.7rem;
+      width: 350px;
+      text-align: left;
+      border-bottom: 2px solid #575757;
+      padding: 15px 10px;
+    }
+
+    .tableContainer td {
+      background-color: none;
+      font-weight: 900;
+      font-size: 1.7rem;
+      width: 350px;
+      text-align: left;
+      border-bottom: 2px solid #575757;
+      padding: 15px 10px;
+    }
+
+    .textContainer {
+       margin: 45px 0;
+    }
+
+    .textContainer p {
+      margin: 10px;
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-bottom: 13%;
+    }
+
+    .btn-container .btn {
+      font-size: 1.2rem;
+      width: 150px;
+      display: inline-block;
+      margin: 0 5px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .btn-container .btn:hover {
+      background: #0056b3;
+    }

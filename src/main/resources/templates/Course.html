@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>모집과정</title>
+    <link rel="stylesheet" href="/css/course.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div th:replace="layout/header :: header"></div>
+
+<div class="course-container">
+    <h2>모집 과정 안내</h2>
+    <table class="course-table">
+        <thead>
+        <tr>
+            <th>구분</th>
+            <th>과정명</th>
+            <th>교육기간</th>
+            <th>신청</th>
+        </tr>
+        </thead>
+        <tbody id="courseBody">
+        <!-- JS로 채워짐 -->
+        </tbody>
+    </table>
+    <div id="pagination" class="pagination"></div>
+</div>
+
+<div th:replace="layout/footer :: footer"></div>
+<script src="/js/course.js"></script>
+</body>
+</html>
