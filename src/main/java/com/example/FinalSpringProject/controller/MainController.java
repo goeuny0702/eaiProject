@@ -50,7 +50,7 @@ class admissionform{
 @Controller
 class Course {
     @GetMapping("/Course")
-    public String showCalendarPage() {
+    public String showCoursePage() {
         return "Course";
     }
 }
