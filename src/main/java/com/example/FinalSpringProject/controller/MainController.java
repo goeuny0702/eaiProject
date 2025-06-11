@@ -55,6 +55,7 @@ class Course {
     }
 }
 
+@Controller
 class viewDetails{
     @GetMapping("/view-Details")
     public String showviewDetailsPage() {

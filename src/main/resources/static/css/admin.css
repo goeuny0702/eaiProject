@@ -95,6 +95,7 @@ body {
 }
 
 .stats-grid{
+    margin-top: 15px;
     display: flex;
     gap: 50px;
     justify-content: center;
@@ -103,8 +104,8 @@ body {
 
 .stats {
 
-  width: 180px;
-  height: 140px;
+  width: 160px;
+  height: 110px;
   border-radius: 10px;
   padding: 10px;
   text-align: center;
@@ -115,12 +116,12 @@ body {
 }
 
 .label {
-  font-size: 25px;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
 .value {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .gray {
@@ -145,20 +146,21 @@ body {
 }
 
 .title{
-    font-size: 30px;
+    font-size: 23px;
+    margin-top: 15px;
     margin-left: 45px;
 }
 
 .class-manage {
-  font-size: 20px;
+  margin: 20px 0px 10px 50px;
+  font-size: 17px;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .class-grid {
   justify-content: center;
   display: grid;
-  grid-template-columns: 240px 110px 90px 60px 130px 130px 100px;
+  grid-template-columns: 240px 110px 80px 150px 150px 120px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -204,9 +206,101 @@ body {
     background-color: white;
 }
 
+.down-p-title {
+    margin-left: 0;
+}
+
 .job-status{
     padding: 20px 15px 40px 30px;
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: white;
+}
+
+.button-grid {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    justify-items: right;
+}
+
+.button-item {
+    margin: 10px 10px 10px 0px;
+    position: relative;
+}
+.down {
+    margin: 10px 0px 10px 0px;
+}
+
+.right {
+    margin: 0 10px 10px 0;
+    justify-content: right;
+    display: flex;
+    position: relative;
+    right: 0;
+}
+
+.accordion-content {
+    padding: 0;
+    right: 0;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+}
+
+.accordion-content.open {
+    top: 100%;
+    padding: 0;
+    right: 0;
+    visibility: visible;
+    opacity: 1;
+    display: table;
+    width: auto;
+}
+
+.accordion-btn {
+    background-color: white;
+    height: 30px;
+    width: 100px;
+    border: 2px solid blue;
+    color: blue;
+    font-size: 16px;
+}
+
+.accordion-inside-btn{
+    margin: 2px;
+    color: blue;
+    border: none;
+    background-color: white;
+    white-space: nowrap;
+    width: auto;
+}
+
+.accordion-inside-btn:hover{
+    background-color: #f0f0f0;
+}
+
+.picture-grid{
+    gap: 20px;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+}
+
+.picture-item{
+    border: 1px solid #ddd;
+    height: 250px;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.span-n{
+    margin: 10px;
+    background-color: red;
+    color: white;
+    padding: 0px 6px 0px 6px;
+    border-radius: 4px;
 }
