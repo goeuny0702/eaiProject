@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>과정상세정보페이지</title>
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/view-Details.css}">
+</head>
+<body>
+<!--헤더-->
+<div th:replace="layout/header :: header"></div>
+
+<div class="mainContainer">
+    <div class="tableContainer">
+        <h1>과정 상세보기</h1>
+        <table>
+            <tr>
+                <th>분류</th>
+                <td th:text="${training?.category}"></td>
+            </tr>
+            <tr>
+                <th>과정명</th>
+                <td th:text="${training?.name}"></td>
+            </tr>
+            <tr>
+                <th>교육기간</th>
+                <td th:text="${training?.period}"></td>
+            </tr>
+            <tr>
+                <th>수강료</th>
+                <td th:text="${training?.fee}"></td>
+            </tr>
+            <tr>
+                <th>교육시간/요일</th>
+                <td th:text="${training?.schedule}"></td>
+            </tr>
+            <tr>
+                <th>훈련수당</th>
+                <td th:text="${training?.allowance}"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="textContainer">
+        <p>K-Digital Training란?</p>
+
+        <p>
+            목적: AI, 빅데이터, 클라우드, 반도체, 로봇, 드론, 디지털헬스, 메타버스, 사이버보안 등<br/>
+            신기술 분야 실무형 인재를 양성해 디지털 전환과 4차 산업혁명 시대 산업 수요에 대응하기 위함
+        </p>
+        <p>
+            배경: 한국판 뉴딜의 일환으로, 디지털 인재 부족 문제를 해결하고 기업·대학·직업훈련기관 등이<br/>
+            함께 협력 중심 교육을 설계·운영하도록 구성됨
+        </p>
+        <p>
+            1. 국내 지원·무상 교육<br/>
+            - 참가자는 교육비 전액 무료<br/>
+            - 참가자-디지털 전환경험 활동까지 지원
+        </p>
+        <p>
+            2. 실무 중심 프로젝트형 훈련<br/>
+            - 훈련시간: 매일 8시간, 주 5일 집중 교육<br/>
+            - 전체 과정의 약 30%가 프로젝트 기반 실습
+        </p>
+        <p>
+            3. 기업·대학·직업훈련기관 협력<br/>
+            - 참여기업·대학·직업훈련기관, 현대 등 민간기업과 연계한 과정<br/>
+            - 훈련 수요 기반 맞춤형 커리큘럼 운영
+        </p>
+        <p>
+            4. 교육대상<br/>
+            - 국민내일배움카드 보유자 (구직자, 재직자, 사업주도 포함)<br/>
+            - 비전공자도 수강 가능
+        </p>
+    </div>
+</div>
+
+<div class="btn-container">
+    <a href="#" class="btn">신청</a>
+    <a href="#" class="btn">목록</a>
+</div>
+
+<!--푸터-->
+<div th:replace="layout/footer :: footer"></div>
+</body>
+</html>
