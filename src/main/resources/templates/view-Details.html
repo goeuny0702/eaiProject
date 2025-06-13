@@ -9,7 +9,6 @@
     <link rel="stylesheet" th:href="@{/css/view-Details.css}">
 </head>
 <body>
-<!--헤더-->
 <div th:replace="layout/header :: header"></div>
 
 <div class="mainContainer">
@@ -22,11 +21,11 @@
             </tr>
             <tr>
                 <th>과정명</th>
-                <td th:text="${training?.name}"></td>
+                <td th:text="${training.subjectTitle}">과정명</td>
             </tr>
             <tr>
                 <th>교육기간</th>
-                <td th:text="${training?.period}"></td>
+                <td th:text="${training.subjectPeriod}">기간</td>
             </tr>
             <tr>
                 <th>수강료</th>
