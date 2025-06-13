@@ -20,17 +20,17 @@ public class ClassUserService {
         return classUserRepository.findByUserID(userID);
     }
 
-    public String login(String userID, String userPW) {
+    public ClassUser login(String userID, String userPW) {
         ClassUser user = classUserRepository.findByUserID(userID);
 
         if (user == null) {
-            return "아이디가 틀립니다";
+            return null;
         }
 
         if (user.getUserPW() == null || !user.getUserPW().equals(userPW)) {
-            return "비밀번호가 틀립니다";
+            return null;
         }
-        return "success";
-    }
 
+        return user;
+    }
 }

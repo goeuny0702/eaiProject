@@ -17,7 +17,9 @@ public class ClassUser {
     private String userName;
     private String userTel;
     private String userAddress;
-    private Boolean userAuthority;
+
+    @Builder.Default
+    private Boolean userAuthority = false;
     private String userEmail;
     private Boolean userGender;
 }
