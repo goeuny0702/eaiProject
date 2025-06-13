@@ -10,8 +10,6 @@ import lombok.*;
 public class ClassUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToOne
-    @JoinColumn(name = "classID", nullable = true)
     private Long classID;
 
     private String userID;
