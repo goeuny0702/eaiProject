@@ -4,10 +4,8 @@ import com.example.FinalSpringProject.form.ClassUserCreateForm;
 import com.example.FinalSpringProject.service.ClassUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping
@@ -25,6 +23,27 @@ public class MainController {
                 .build();
 
         classUserService.save(user);
+        return "redirect:/main";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String userID,
+                        @RequestParam String userPW,
+                        RedirectAttributes redirectAttributes) {
+
+        String result = classUserService.login(userID, userPW);
+
+        if (result.equals("아이디가 틀립니다")) {
+            redirectAttributes.addFlashAttribute("errorMessage", "존재하지 않는 아이디입니다.");
+            return "redirect:/login";
+        }
+
+        if (result.equals("비밀번호가 틀립니다")) {
+            redirectAttributes.addFlashAttribute("errorMessage", "비밀번호가 틀렸습니다.");
+            return "redirect:/login";
+        }
+
+        // 로그인 성공
         return "redirect:/main";
     }
 
