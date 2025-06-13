@@ -1,7 +1,7 @@
 package com.example.FinalSpringProject.controller;
-
-import com.example.FinalSpringProject.form.MemberCreateForm;
-import com.example.FinalSpringProject.service.MemberService;
+import com.example.FinalSpringProject.entity.ClassUser;
+import com.example.FinalSpringProject.form.ClassUserCreateForm;
+import com.example.FinalSpringProject.service.ClassUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,21 +13,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping
 @RequiredArgsConstructor
 public class MainController {
+    private final ClassUserService classUserService;
 
-    private final MemberService ms;
+    @PostMapping("/signin")
+    public String registerUser(@ModelAttribute ClassUserCreateForm form) {
+        ClassUser user = ClassUser.builder()
+                .userID(form.getUserID())
+                .userPW(form.getUserPW())
+                .userName(form.getUserName())
+                .userTel(form.getUserTel())
+                .build();
+
+        classUserService.save(user);
+        return "redirect:/main";
+    }
 
     @GetMapping("/main")
-    public String showMainPage() {
-        return "main"; // resources/templates/main.html
-    }
-    @GetMapping("/signin")
-    public String showSignInPage() {
-        return "signin";
-    }
-    @PostMapping("/signin")
-    public String postSignInPage(@ModelAttribute("signin")LoginForm form) {
-        return "signin";
-    }
+    public String showMainPage() { return "main"; }
 
     @GetMapping("/LifeRecord")
     public String showLifeRecordPage() {
@@ -41,11 +43,11 @@ public class MainController {
 
     @GetMapping("/Calendar")
     public String showCalendarPage() {
-        return "Calendar"; // 이거 넣음 templates/calendar.html
+        return "Calendar";
     }
     @GetMapping("/admission-form")
     public String showadmissionformPage() {
-        return "admission-form"; // 이거 넣음 templates/calendar.html
+        return "admission-form";
     }
     @GetMapping("/Course")
     public String showCoursePage() {
@@ -60,8 +62,4 @@ public class MainController {
         return "login";
     }
 
-    @PostMapping
-    public String postSignup(@ModelAttribute("signup")MemberCreateForm form){
-        ms.signup(form);
-    }
 }
