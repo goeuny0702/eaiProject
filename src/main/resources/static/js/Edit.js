@@ -40,7 +40,9 @@ function saveAll() {
   sessionStorage.setItem('userForm', JSON.stringify(data));
 
   // 서버에 은행 정보 전송
-  bankData['classID'] = 1;  // 실제 classID로 교체 필요
+  bankData['classId'] = 1;  // 실제 classID로 교체 필요
+
+  console.log("서버에 보낼 데이터:", bankData);
 
   fetch('/api/bank', {
     method: 'POST',
@@ -48,6 +50,7 @@ function saveAll() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(bankData)
+
   })
   .then(response => {
     if (!response.ok) throw new Error("은행 정보 저장 실패");
@@ -65,12 +68,31 @@ function saveAll() {
   document.getElementById('editBtn').style.display = 'inline-block';
 }
 
+function loadBankInfo() {
+  fetch('/api/bank/1') // 예시 classID, 실제 로그인값으로 교체 필요
+    .then(response => {
+      if (!response.ok) throw new Error("불러오기 실패");
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById("bankName").value = data.bankName || '';
+      document.getElementById("bankAddress").value = data.bankAddress || '';
+      document.getElementById("bankOwner").value = data.bankOwner || '';
+
+      document.getElementById("bankName-text").innerText = data.bankName || '';
+      document.getElementById("bankAddress-text").innerText = data.bankAddress || '';
+      document.getElementById("bankOwner-text").innerText = data.bankOwner || '';
+    })
+    .catch(error => {
+      console.error("은행 정보 불러오기 오류:", error);
+    });
+}
 
 function toggleEdit() {
   const fields = [
     'instituteName', 'courseName', 'trainingPeriod',
     'name', 'phone', 'email',
-    'bankName', 'accountNumber', 'accountHolder',
+    'bankName', 'bankAddress', 'bankOwner',
     'selectedCourse', 'sessionNumber', 'memo'
   ];
 
@@ -120,6 +142,8 @@ window.onload = () => {
     document.getElementById('saveBtn').style.display = 'none';
     document.getElementById('editBtn').style.display = 'inline-block';
   }
+
+  loadBankInfo();
 };
 
 function goNext() {
