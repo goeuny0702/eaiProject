@@ -76,7 +76,6 @@
 .course-table th:nth-child(1),
 .course-table td:nth-child(1) {
   width: 60px;
-  font-family: monospace;
   font-weight: 600;
   text-align: center;
 }
