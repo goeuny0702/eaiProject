@@ -14,15 +14,17 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Subject {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer subjectID;
 
-    @OneToMany(mappedBy = "subject")
-    private List<Member> students;
-    private String teacher;
-    private String name;
-    private String maxperson;
-    private String price;
-    private String period;
+    @ManyToOne
+    @JoinColumn(name = "classID", nullable = false)
+    private ClassUser classUser;
+
+    private String subjectTitle;
+    private String subjectPeriod;
+    private Integer subjectMax;
+    private Integer subjectCost;
 }
