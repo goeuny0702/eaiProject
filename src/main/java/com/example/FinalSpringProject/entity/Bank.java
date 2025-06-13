@@ -15,7 +15,9 @@ public class Bank {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer bankID;
 
-    private Integer classID;
+    @OneToOne
+    @JoinColumn(name = "classID")
+    private ClassUser classUser;
 
     private String bankName;
 

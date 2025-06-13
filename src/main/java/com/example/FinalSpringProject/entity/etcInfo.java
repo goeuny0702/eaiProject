@@ -15,9 +15,9 @@ public class etcInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer etcInfoID;
 
-//    @OneToOne
-//    @JoinColumn(name = "classID", referencedColumnName = "classID")
-    private Integer classID;
+    @OneToOne
+    @JoinColumn(name = "classID")
+    private ClassUser classUser;
 
     @Lob
     private String authOpinion;
