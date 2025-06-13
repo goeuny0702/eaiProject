@@ -41,6 +41,11 @@ public class MainController {
         }
 
         session.setAttribute("loggedInUser", user);
+
+        if (Boolean.TRUE.equals(user.getUserAuthority())) {
+            return "redirect:/admin/login";
+        }
+
         return "redirect:/main";
     }
 
