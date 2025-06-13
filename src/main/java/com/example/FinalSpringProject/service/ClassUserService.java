@@ -5,7 +5,7 @@ import com.example.FinalSpringProject.repository.ClassUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,11 +16,21 @@ public class ClassUserService {
         return classUserRepository.save(classUser);
     }
 
-    public List<ClassUser> findAll() {
-        return classUserRepository.findAll();
+    public ClassUser findByUserID(String userID) {
+        return classUserRepository.findByUserID(userID);
     }
 
-    public ClassUser findById(Long id) {
-        return classUserRepository.findById(id).orElse(null);
+    public String login(String userID, String userPW) {
+        ClassUser user = classUserRepository.findByUserID(userID);
+
+        if (user == null) {
+            return "아이디가 틀립니다";
+        }
+
+        if (user.getUserPW() == null || !user.getUserPW().equals(userPW)) {
+            return "비밀번호가 틀립니다";
+        }
+        return "success";
     }
+
 }
