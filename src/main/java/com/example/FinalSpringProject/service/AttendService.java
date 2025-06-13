@@ -16,7 +16,7 @@ public class AttendService {
     private final ClassUserRepository classUserRepository;
 
     public void save(AttendForm form) {
-        ClassUser classUser = classUserRepository.findById(form.getClassID())
+        ClassUser classUser = classUserRepository.findById((long)form.getClassID())
                 .orElseThrow(() -> new IllegalArgumentException("해당 유저(classID)가 존재하지 않습니다."));
 
         Attend attend = Attend.builder()

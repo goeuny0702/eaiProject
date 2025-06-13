@@ -18,7 +18,7 @@ public class SubjectService {
     public void createSubject(SubjectForm form) {
 
         // classID를 가진 ClassUser가 존재하는지 검증
-        ClassUser classUser = classUserRepository.findById(form.getClassID())
+        ClassUser classUser = classUserRepository.findById((long)form.getClassID())
                 .orElseThrow(() -> new IllegalArgumentException("해당 유저(classID)를 찾을 수 없습니다."));
 
         // 엔티티 생성 및 저장
