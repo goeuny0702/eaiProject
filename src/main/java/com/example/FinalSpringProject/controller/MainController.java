@@ -1,10 +1,13 @@
 package com.example.FinalSpringProject.controller;
 import com.example.FinalSpringProject.entity.ClassUser;
+import com.example.FinalSpringProject.entity.Subject;
 import com.example.FinalSpringProject.form.ClassUserCreateForm;
+import com.example.FinalSpringProject.repository.SubjectRepository;
 import com.example.FinalSpringProject.service.ClassUserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -83,10 +86,18 @@ public class MainController {
     public String showCoursePage() {
         return "Course";
     }
-    @GetMapping("/view-Details")
-    public String showviewDetailsPage() {
+
+    private final SubjectRepository subjectRepository;
+
+    @GetMapping("/view-Details/{subjectID}")
+    public String showDetails(@PathVariable Integer subjectID, Model model) {
+        Subject subject = subjectRepository.findById(subjectID)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid subject ID: " + subjectID));
+
+        model.addAttribute("training", subject);
         return "view-Details";
     }
+
     @GetMapping("/login")
     public String showLoginPage() {
         return "login";

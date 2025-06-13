@@ -11,15 +11,16 @@ function renderCourses(page) {
   tbody.innerHTML = '';
 
   currentCourses.forEach(course => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${course.subjectID - 1}</td>
-      <td>${course.subjectTitle}</td>
-      <td>${course.subjectPeriod}</td>
-      <td><button class="apply-btn">신청</button></td>
-    `;
-    tbody.appendChild(tr);
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${course.subjectID - 1}</td>
+        <td><a href="/view-Details/${course.subjectID}">${course.subjectTitle}</a></td>
+        <td>${course.subjectPeriod}</td>
+        <td><button class="apply-btn">신청</button></td>
+      `;
+      tbody.appendChild(tr);
   });
+
 
   const remaining = Math.max(ITEMS_PER_PAGE - currentCourses.length, 0);
   for (let i = 0; i < remaining; i++) {
