@@ -2,11 +2,12 @@ function saveAll() {
   const fields = [
     'instituteName', 'courseName', 'trainingPeriod',
     'name', 'phone', 'email',
-    'bankName', 'accountNumber', 'accountHolder',
+    'bankName', 'bankAddress', 'bankOwner',
     'selectedCourse', 'sessionNumber', 'memo'
   ];
 
   const data = {};
+  const bankData = {};
 
   fields.forEach((field) => {
     const input = document.querySelector(`[name="${field}"]`);
@@ -27,14 +28,43 @@ function saveAll() {
       text.style.display = 'block';
 
       data[field] = value;
+
+      // 은행 관련 필드는 bankData에 그대로 담기
+      if (field === 'bankName' || field === 'bankAddress' || field === 'bankOwner') {
+        bankData[field] = value;
+      }
     }
   });
 
+  // sessionStorage에 전체 입력값 저장
   sessionStorage.setItem('userForm', JSON.stringify(data));
 
+  // 서버에 은행 정보 전송
+  bankData['classID'] = 1;  // 실제 classID로 교체 필요
+
+  fetch('/api/bank', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(bankData)
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("은행 정보 저장 실패");
+    return response.json();
+  })
+  .then(data => {
+    console.log("은행 정보 저장 완료:", data);
+  })
+  .catch(error => {
+    console.error("은행 정보 저장 오류:", error);
+  });
+
+  // 버튼 전환
   document.getElementById('saveBtn').style.display = 'none';
   document.getElementById('editBtn').style.display = 'inline-block';
 }
+
 
 function toggleEdit() {
   const fields = [
