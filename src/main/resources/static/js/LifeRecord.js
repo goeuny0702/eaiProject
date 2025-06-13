@@ -11,20 +11,44 @@ function saveAll() {
   fields.forEach(field => {
     const input = document.getElementById(field + '-input');
     const text = document.getElementById(field + '-text');
-    if (input && text) {  // 존재 여부 안전 처리
+    if (input && text) {
       const value = input.value.trim();
       data[field] = value;
-
       text.innerText = value;
       text.style.display = 'inline';
       input.style.display = 'none';
     }
   });
 
-  // 저장
   localStorage.setItem('lifeRecord', JSON.stringify(data));
-  alert('저장되었습니다!');
+
+  // 여기 classID는 하드코딩 (로그인 없이 테스트용)
+  const etcInfo = {
+    authOpinion: document.getElementById('attitude-input').value.trim(),
+    interestJob: document.getElementById('termination-input').value.trim(),
+    classID: 1  // ← 여기에 테스트용 classID 넣기
+  };
+
+  fetch('/api/etcinfo', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(etcInfo)
+  })
+  .then(res => {
+    if (!res.ok) throw new Error('서버 저장 실패');
+    return res.json();
+  })
+  .then(data => {
+    console.log('[서버 저장 완료]', data);
+    alert('저장되었습니다!');
+  })
+  .catch(err => {
+    console.error('[서버 저장 실패]', err);
+    alert('서버 저장에 실패했습니다.\n' + err.message);
+  });
 }
+
+
 
 
 

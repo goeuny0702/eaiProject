@@ -57,14 +57,8 @@ textarea:focus {
   border-color: #007bff;
 }
 
-.section {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
 .half-section {
-  width: 49%;
+  width: 100%;
 }
 
 .text {
@@ -72,8 +66,19 @@ textarea:focus {
   margin-bottom: 5px;
 }
 
-.btn {
+.btnContainer {
+    text-align: end;
+
+}
+
+.btnContainer .btn {
   margin-top: 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 8px;
 }
 
 .hidden {
