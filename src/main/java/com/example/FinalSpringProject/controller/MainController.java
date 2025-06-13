@@ -28,6 +28,9 @@ public class MainController {
         return "redirect:/main";
     }
 
+    @GetMapping("/signin")
+    public String showSigninPage() { return "signin"; }
+
     @GetMapping("/main")
     public String showMainPage() { return "main"; }
 
