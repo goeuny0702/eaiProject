@@ -2,6 +2,7 @@ package com.example.FinalSpringProject.controller;
 import com.example.FinalSpringProject.entity.ClassUser;
 import com.example.FinalSpringProject.form.ClassUserCreateForm;
 import com.example.FinalSpringProject.service.ClassUserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -29,22 +30,24 @@ public class MainController {
     @PostMapping("/login")
     public String login(@RequestParam String userID,
                         @RequestParam String userPW,
+                        HttpSession session,
                         RedirectAttributes redirectAttributes) {
 
-        String result = classUserService.login(userID, userPW);
+        ClassUser user = classUserService.login(userID, userPW);
 
-        if (result.equals("아이디가 틀립니다")) {
-            redirectAttributes.addFlashAttribute("errorMessage", "존재하지 않는 아이디입니다.");
+        if (user == null) {
+            redirectAttributes.addFlashAttribute("errorMessage", "아이디 또는 비밀번호가 틀렸습니다.");
             return "redirect:/login";
         }
 
-        if (result.equals("비밀번호가 틀립니다")) {
-            redirectAttributes.addFlashAttribute("errorMessage", "비밀번호가 틀렸습니다.");
-            return "redirect:/login";
-        }
-
-        // 로그인 성공
+        session.setAttribute("loggedInUser", user);
         return "redirect:/main";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();  // 세션 전체 삭제
+        return "redirect:/main";   // 홈으로 이동
     }
 
     @GetMapping("/signin")
