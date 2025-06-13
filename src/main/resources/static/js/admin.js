@@ -3,8 +3,8 @@ const data = [
         title: "차세대 AI 융합 Solution 개발 (자바, 파이썬, RPA) (9회차)",
         students: 11,
         max: 20,
-        over: "미초과",
-        assigned: "있음",
+        over: "2025-06",
+        assigned: "평생",
         teacher: "임승현"
     }
 ];
