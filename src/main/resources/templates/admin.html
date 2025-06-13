@@ -23,10 +23,6 @@
                     <div class="label">신입생 수</div>
                     <div class="value">30</div>
                 </div>
-                <div class="stats blue-light">
-                    <div class="label">출석률</div>
-                    <div class="value">98%</div>
-                </div>
                 <div class="stats blue">
                     <div class="label">졸업예정자</div>
                     <div class="value">20</div>
@@ -37,8 +33,8 @@
                 <div class="header">강좌명</div>
                 <div class="header">수강인원</div>
                 <div class="header">정원</div>
-                <div class="header">인원초과 여부</div>
-                <div class="header">강사배정여부</div>
+                <div class="header">훈련시작날짜</div>
+                <div class="header">훈련종료날짜</div>
                 <div class="header">강사명</div>
             </div>
 
@@ -62,51 +58,28 @@
     </div>
     <div class="bottom-grid">
         <div class="score-monitor">
-            <p class="title down-p-title">출결 및 성적 모니터링 ✅</p>
-            <div class="button-grid">
-                <div class="button-item up">
-                    <button class="accordion-btn">기간 선택 ▼</button>
-                    <div class="accordion-content">
-                        <button class="accordion-inside-btn">2025년 1월 ~ 2025년 2월</button>
-                        <button class="accordion-inside-btn">2025년 3월 ~ 2025년 4월</button>
-                        <button class="accordion-inside-btn">2025년 4월 ~ 2025년 5월</button>
-                        <button class="accordion-inside-btn">2025년 5월 ~ 2025년 6월</button>
-                    </div>
-                </div>
-                <div class="button-item down">
-                    <button class="accordion-btn">기간 선택 ▼</button>
-                    <div class="accordion-content">
-                        <button class="accordion-inside-btn">다른 날짜 선택</button>
-                    </div>
+            <p class="title down-p-title"> 자격증 취득 현황 ✅</p>
+            <div class="picture-item">
+                <div class="ai-image-aaaaa">
+                    <img th:src="@{/image/process.png}" alt="자격증 이미지">
                 </div>
             </div>
-            <div class="picture-grid">
-                <div class="picture-item">사진1</div>
-                <div class="picture-item">사진2</div>
-            </div>
-        </div>
 
+        </div>
         <div class="job-status">
-            <p class="title down-p-title">취업 및 진로지원 현황 📊</p>
-            <div class="button-grid">
-                <div class="button-item right">
-                    <button class="accordion-btn">전체 ▼</button>
-                    <div class="accordion-content">
-                        <button class="accordion-inside-btn">취업</button>
-                    </div>
-                </div>
-                <div>
-
-                </div>
-            </div>
+            <p class="down-p-title">취업 및 진로지원 현황 📊</p>
+            <div class="accordion-content"></div>
             <div class="picture-grid">
-                <div class="picture-item">사진1</div>
-                <div class="picture-item">사진2</div>
+                <div class="picture-item">
+                    <img th:src="@{/image/chart1.png}" alt="차트 이미지" style="width: 100%; height: auto;">
+                </div>
+                <div class="picture-item">
+                    <img th:src="@{/image/chart2.png}" alt="차트2 이미지" style="width: 100%; height: auto;">
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<div th:replace="layout/footer :: footer"></div>
+
+        <div th:replace="layout/footer :: footer"></div>
 
 </body>
 </html>
