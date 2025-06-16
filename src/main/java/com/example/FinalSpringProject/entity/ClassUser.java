@@ -1,7 +1,10 @@
 package com.example.FinalSpringProject.entity;
-
+import java.util.List;
+import com.example.FinalSpringProject.entity.Attend;
 import jakarta.persistence.*;
 import lombok.*;
+
+
 
 @Entity
 @Getter
@@ -22,4 +25,7 @@ public class ClassUser {
     private Boolean userAuthority = false;
     private String userEmail;
     private Boolean userGender;
+
+    @OneToMany(mappedBy = "classUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Attend> attends;
 }
