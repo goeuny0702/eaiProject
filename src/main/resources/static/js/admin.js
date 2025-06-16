@@ -62,6 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
         <div>${item.teacher}</div>
       `;
     });
+  // 생성된 div 요소에 직접 적용
+  document.querySelectorAll('#classGrid > div').forEach(el => {
+    el.style.textAlign = 'center';
+  });
+
 
   document.querySelectorAll('.accordion-btn').forEach((btn) => {
     btn.addEventListener('click', (e) => {
@@ -95,5 +100,29 @@ document.addEventListener("DOMContentLoaded", function () {
       el.style.maxHeight = null;
     });
   });
+ // 전역 스코프에 직접 선언
+ function openModal() {
+     document.getElementById("modal").style.display = "block";
+ }
 
+ function closeModal() {
+     document.getElementById("modal").style.display = "none";
+ }
+
+ // 바깥 클릭 시 닫기 기능도 전역 스코프에 둠
+// 기존 코드 안에서 이 부분을 수정:
+window.openModal = function () {
+    document.getElementById("modal").style.display = "block";
+};
+
+window.closeModal = function () {
+    document.getElementById("modal").style.display = "none";
+};
+
+window.onclick = function (event) {
+    const modal = document.getElementById("modal");
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+};
 });
