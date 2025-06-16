@@ -97,7 +97,11 @@ function loadUserData() {
       document.getElementById("address-text").innerText = userData.userAddress || "";
       document.getElementById("tel-text").innerText = userData.userTel || "";
 
-      document.getElementById("instructor-text").innerText = "";
+
+      document.getElementById("course-text").innerText = "차세대 AI 예측 Solution 개발";
+      document.getElementById("duration-text").innerText = "2024.12. 26 ~ 2024. 06. 30";
+
+      document.getElementById("instructor-text").innerText = "임승현";
 
       // 값 넣기
       document.getElementById("attitude-input").value = userData.authOpinion || "";
