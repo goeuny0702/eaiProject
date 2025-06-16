@@ -1,4 +1,5 @@
 package com.example.FinalSpringProject.controller;
+import com.example.FinalSpringProject.DTO.SubjectDTO;
 import com.example.FinalSpringProject.entity.ClassUser;
 import com.example.FinalSpringProject.entity.Subject;
 import com.example.FinalSpringProject.form.ClassUserCreateForm;
@@ -117,6 +118,8 @@ public class MainController {
     public String showCoursePage() {
         return "Course";
     }
+
+
     @GetMapping("/community")
     public String showCommunityPage() {
         return "community";
