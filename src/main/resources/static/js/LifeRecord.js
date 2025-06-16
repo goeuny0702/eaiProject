@@ -65,16 +65,25 @@ function saveAll() {
 
 // 수정
 function editAll() {
-  document.getElementById('attitude-input').style.display = 'inline';
-  document.getElementById('termination-input').style.display = 'inline';
+  const attitudeInput = document.getElementById("attitude-input");
+  const terminationInput = document.getElementById("termination-input");
+
+  if (attitudeInput) {
+    attitudeInput.style.display = "inline";
+    attitudeInput.disabled = false;
+  }
+
+  if (terminationInput) {
+    terminationInput.style.display = "inline";
+    terminationInput.disabled = false;
+  }
 }
 
-// 학생 선택시 정보 불러오기
+
 function loadUserData() {
   const userId = document.getElementById("userSelect").value;
   if (!userId) return;
 
-  // 확인: 응답 로그
   fetch(`/api/user-info/${userId}`)
     .then(res => res.json())
     .then(userData => {
@@ -88,16 +97,18 @@ function loadUserData() {
       document.getElementById("address-text").innerText = userData.userAddress || "";
       document.getElementById("tel-text").innerText = userData.userTel || "";
 
-      // 강사명 필드 없음 처리
       document.getElementById("instructor-text").innerText = "";
 
+      // 값 넣기
       document.getElementById("attitude-input").value = userData.authOpinion || "";
       document.getElementById("termination-input").value = userData.interestJob || "";
 
+      // 항상 보이게 + 비활성화
+      document.getElementById("attitude-input").style.display = "block";
+      document.getElementById("termination-input").style.display = "block";
 
-      // input 숨기기
-      document.getElementById("attitude-input").style.display = "none";
-      document.getElementById("termination-input").style.display = "none";
+      document.getElementById("attitude-input").disabled = true;
+      document.getElementById("termination-input").disabled = true;
 
       // 출석률
       fetch(`/api/attendance/${classID}`)
@@ -113,8 +124,8 @@ function loadUserData() {
     .catch(err => {
       console.error('[학생 정보 불러오기 실패]', err);
     });
-
 }
+
 
 // 페이지 로드시 자동 로딩은 생략 (선택시만)
 window.onload = function () {

@@ -90,10 +90,15 @@ public class MainController {
 
         List<ClassUser> userList = classUserRepository.findAll();
         userList.forEach(user -> {
-            if (user.getEtcInfo() != null) {
-                user.getEtcInfo().getAuthOpinion(); // Lazy 강제 초기화
+            try {
+                if (user.getEtcInfo() != null) {
+                    System.out.println("의견: " + user.getEtcInfo().getAuthOpinion());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
+
 
         model.addAttribute("userList", userList);
         return "LifeRecord";
