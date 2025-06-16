@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface AttendRepository extends JpaRepository<Attend, Integer> {
     List<Attend> findByClassUser_ClassID(Integer classID); // 유저별 출석 조회
+    List<Attend> findByClassUser_ClassID(Long classId);
+
 }

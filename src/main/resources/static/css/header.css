@@ -111,5 +111,13 @@ transition: background-color 0.2s ease;
 }
 
 .login-links a:hover {
-background-color: #DDDDDD;
+background-color: #ffffff;
+}
+.btn-student.admin-btn {
+  background-color: #ffffff;
+  color: black;
+}
+
+.btn-student.admin-btn:hover {
+  background-color: #ffffff;
 }

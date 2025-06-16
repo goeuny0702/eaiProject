@@ -15,33 +15,36 @@
 <!--헤더-->
 <div th:replace="layout/header :: header"></div>
 
+
 <div class="recordContainer">
-    <button>학생을 선택하세요</button>
-    <button>여기 학생이 들어갈거에요 db연결</button>
-    <h2>학생정보</h2>
+    <div class="student-select-box">
+        <label for="userSelect">학생 선택:</label>
+        <select id="userSelect" onchange="loadUserData()">
+            <option value="">학생을 선택하세요</option>
+            <option th:each="user : ${userList}" th:value="${user.userID}" th:text="${user.userID}"></option>
+        </select>
+    </div>
+
+    <h2>기본정보</h2>
     <table>
         <tr>
             <td class="label-cell">이름</td>
             <td>
                 <span class="text" id="name-text"></span>
-                <input type="text" id="name-input">
             </td>
             <td class="label-cell">이메일</td>
             <td>
-                <span class="text" id="id-text"></span>
-                <input type="text" id="id-input">
+                <span class="text" id="email-text"></span>
             </td>
         </tr>
         <tr>
             <td class="label-cell">주소</td>
             <td>
                 <span class="text" id="address-text"></span>
-                <input type="text" id="address-input">
             </td>
             <td class="label-cell">전화번호</td>
             <td>
-                <span class="text" id="job-text"></span>
-                <input type="text" id="job-input">
+                <span class="text" id="tel-text"></span>
             </td>
         </tr>
 
@@ -53,37 +56,45 @@
             <td class="label-cell">수업 과정</td>
             <td>
                 <span class="text" id="course-text"></span>
-                <input type="text" id="course-input">
             </td>
             <td class="label-cell">수업 기간</td>
             <td>
                 <span class="text" id="duration-text"></span>
-                <input type="text" id="duration-input">
             </td>
         </tr>
         <tr>
             <td class="label-cell">출석률(%)</td>
             <td>
                 <span class="text" id="attendance-text"></span>
-                <input type="text" id="attendance-input">
             </td>
             <td class="label-cell">담당 강사명</td>
             <td>
                 <span class="text" id="instructor-text"></span>
-                <input type="text" id="instructor-input">
             </td>
         </tr>
     </table>
-    <h2>상담 내역</h2>
+
+
+    <div class="half-section">
+            <h2>태도 및 성실 평가 (강사 의견)</h2>
+            <table>
+                <tr><td>
+                    <input type="text" id="attitude-input" name="authOpinion" style="display: none;">
+                </td></tr>
+            </table>
+    </div>
+
+
+    <h2>기타 특이사항</h2>
     <table>
         <tr>
-            <td class="label-cell">상담 내용:</td>
+            <td class="label-cell">상담 기록:</td>
             <td colspan="3">
-                <span class="text" id="termination-text"></span>
-                <input type="text" id="termination-input" name="interestJob">
+                <input type="text" id="termination-input" name="interestJob" style="display: none;">
             </td>
         </tr>
     </table>
+
     <div class="btnContainer">
         <button type="submit" class="btn btn-secondary" onclick="editAll()">수정</button>
         <button type="button" class="btn btn-primary" onclick="saveAll()">저장</button>

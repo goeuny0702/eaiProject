@@ -1,16 +1,17 @@
 package com.example.FinalSpringProject.entity;
-import java.util.List;
-import com.example.FinalSpringProject.entity.Attend;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-
-
 @Entity
 @Getter
-@NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class ClassUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long classID;
@@ -26,6 +27,15 @@ public class ClassUser {
     private String userEmail;
     private Boolean userGender;
 
-    @OneToMany(mappedBy = "classUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Attend> attends;
+    // 양방향 연결: Bank
+    @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Bank bank;
+
+
+    @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private etcInfo etcInfo;
+
+
 }

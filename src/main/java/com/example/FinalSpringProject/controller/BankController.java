@@ -22,17 +22,27 @@ public class BankController {
     public ResponseEntity<Bank> saveBank(@RequestBody BankForm form) {
         System.out.println("받은 form 데이터: " + form);
         System.out.println("classID 확인: " + form.getClassId());
+
+        // classUser 조회
         ClassUser user = classUserRepository.findById(Long.valueOf(form.getClassId()))
                 .orElseThrow(() -> new RuntimeException("해당 classID의 유저를 찾을 수 없습니다."));
 
-        Bank bank = new Bank();
+        // 기존 Bank 조회
+        Bank bank = bankRepository.findByClassUser(user)
+                .orElseGet(() -> {
+                    Bank newBank = new Bank();
+                    newBank.setClassUser(user);
+                    return newBank;
+                });
+
+        // 폼 데이터로 덮어쓰기
         bank.setBankName(form.getBankName());
         bank.setBankAddress(form.getBankAddress());
         bank.setBankOwner(form.getBankOwner());
-        bank.setClassUser(user);  // 연관관계 주입
 
         return ResponseEntity.ok(bankRepository.save(bank));
     }
+
 
 
     // 기존 저장된 은행 정보 불러오기

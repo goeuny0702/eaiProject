@@ -1,5 +1,6 @@
 package com.example.FinalSpringProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,7 @@ public class etcInfo {
 
     @OneToOne
     @JoinColumn(name = "classID")
+    @JsonBackReference
     private ClassUser classUser;
 
     @Lob

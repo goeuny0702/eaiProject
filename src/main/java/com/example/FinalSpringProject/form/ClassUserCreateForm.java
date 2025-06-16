@@ -12,6 +12,12 @@ public class ClassUserCreateForm {
     private Boolean userAuthority;
     private String userEmail;
     private Boolean userGender;
+    private Long classID;
+
 
     private Long subjectId;
+
+    private String authOpinion;
+    private String interestJob;
+
 }
