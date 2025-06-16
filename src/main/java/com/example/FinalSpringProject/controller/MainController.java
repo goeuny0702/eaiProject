@@ -52,12 +52,17 @@ public class MainController {
 
         session.setAttribute("loggedInUser", user);
 
+        // 관리자 여부 저장
+        session.setAttribute("loginUser", user.getUserID()); // (선택) userID만 별도 저장하고 싶다면
+        session.setAttribute("isAdmin", Boolean.TRUE.equals(user.getUserAuthority()));
+
         if (Boolean.TRUE.equals(user.getUserAuthority())) {
             return "redirect:/admin/login";
         }
 
         return "redirect:/main";
     }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
@@ -76,16 +81,23 @@ public class MainController {
 
     @GetMapping("/LifeRecord")
     @Transactional
-    public String lifeRecordPage(Model model) {
+    public String lifeRecordPage(HttpSession session, Model model) {
+        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        if (isAdmin == null || !isAdmin) {
+            return "redirect:/"; // 권한 없을 경우 홈으로 리다이렉트
+        }
+
         List<ClassUser> userList = classUserRepository.findAll();
         userList.forEach(user -> {
             if (user.getEtcInfo() != null) {
-                user.getEtcInfo().getAuthOpinion(); // Lazy force initialize
+                user.getEtcInfo().getAuthOpinion(); // Lazy 강제 초기화
             }
         });
+
         model.addAttribute("userList", userList);
         return "LifeRecord";
     }
+
 
 
 
