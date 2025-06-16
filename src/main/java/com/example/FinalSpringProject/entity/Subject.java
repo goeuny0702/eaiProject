@@ -1,5 +1,6 @@
 package com.example.FinalSpringProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,7 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer subjectID;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "classID", nullable = false)
     private ClassUser classUser;

@@ -117,6 +117,10 @@ public class MainController {
     public String showCoursePage() {
         return "Course";
     }
+    @GetMapping("/community")
+    public String showCommunityPage() {
+        return "community";
+    }
 
     private final SubjectRepository subjectRepository;
 
