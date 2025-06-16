@@ -3,6 +3,7 @@ body {
   background-color: #f8f9fa;
 }
 
+
 .recordContainer {
   width: 1000px;
   margin: 7% auto 13% auto;
@@ -10,6 +11,34 @@ body {
   background: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-select-box {
+  width: 350px;
+  margin: 20px 0px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.student-select-box label {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.student-select-box select {
+  flex: 1;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+.student-select-box select:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 h2 {

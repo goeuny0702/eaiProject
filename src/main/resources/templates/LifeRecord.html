@@ -15,7 +15,16 @@
 <!--헤더-->
 <div th:replace="layout/header :: header"></div>
 
+
 <div class="recordContainer">
+    <div class="student-select-box">
+        <label for="userSelect">학생 선택:</label>
+        <select id="userSelect" onchange="loadUserData()">
+            <option value="">학생을 선택하세요</option>
+            <option th:each="user : ${userList}" th:value="${user.userID}" th:text="${user.userID}"></option>
+        </select>
+    </div>
+
     <h2>기본정보</h2>
     <table>
         <tr>
