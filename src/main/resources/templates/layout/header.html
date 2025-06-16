@@ -13,7 +13,6 @@
             </div>
             <div class="login-links">
                 <div class="login-links">
-                    <!-- 마이페이지: 로그인 O → /student, 로그인 X → /login -->
                     <a th:href="${session.loggedInUser != null} ? '/Edit' : '/login'" class="btn-student">마이페이지</a>
 
                     <!-- 로그인/로그아웃: 텍스트와 링크 모두 분기 -->
@@ -21,13 +20,11 @@
                     <a th:if="${session.loggedInUser != null}" th:href="@{/logout}" class="btn-login">로그아웃</a>
                 </div>
             </div>
-
         </div>
     </div>
-        <nav class="bottom-section SMN_effect-13">
-            <a href="/admission" data-hover="입학 및 상담신청">입학 및 상담신청</a>
-            <a href="/Course" data-hover="모집과정">모집과정</a>
-            <a href="/community" data-hover="커뮤니티">커뮤니티</a>
+    <nav class="bottom-section SMN_effect-13">
+        <a href="/admission-form" data-hover="입학 및 상담신청">입학 및 상담신청</a>
+        <a href="/Course" data-hover="모집과정">모집과정</a>
+        <a href="/community" data-hover="커뮤니티">커뮤니티</a>
     </nav>
-
 </header>

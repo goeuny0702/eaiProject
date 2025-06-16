@@ -16,7 +16,9 @@
 <div th:replace="layout/header :: header"></div>
 
 <div class="recordContainer">
-    <h2>기본정보</h2>
+    <button>학생을 선택하세요</button>
+    <button>여기 학생이 들어갈거에요 db연결</button>
+    <h2>학생정보</h2>
     <table>
         <tr>
             <td class="label-cell">이름</td>
@@ -24,7 +26,7 @@
                 <span class="text" id="name-text"></span>
                 <input type="text" id="name-input">
             </td>
-            <td class="label-cell">주민등록번호</td>
+            <td class="label-cell">이메일</td>
             <td>
                 <span class="text" id="id-text"></span>
                 <input type="text" id="id-input">
@@ -36,7 +38,7 @@
                 <span class="text" id="address-text"></span>
                 <input type="text" id="address-input">
             </td>
-            <td class="label-cell">관심 직무</td>
+            <td class="label-cell">전화번호</td>
             <td>
                 <span class="text" id="job-text"></span>
                 <input type="text" id="job-input">
@@ -72,23 +74,10 @@
             </td>
         </tr>
     </table>
-
-
-    <div class="half-section">
-            <h2>태도 및 성실 평가 (강사 의견)</h2>
-            <table>
-                <tr><td>
-                    <span class="text" id="attitude-text"></span>
-                    <input type="text" id="attitude-input" name="authOpinion">
-                </td></tr>
-            </table>
-    </div>
-
-
-    <h2>기타 특이사항</h2>
+    <h2>상담 내역</h2>
     <table>
         <tr>
-            <td class="label-cell">상담 기록:</td>
+            <td class="label-cell">상담 내용:</td>
             <td colspan="3">
                 <span class="text" id="termination-text"></span>
                 <input type="text" id="termination-input" name="interestJob">
