@@ -1,9 +1,11 @@
 package com.example.FinalSpringProject.controller;
 
-import com.example.FinalSpringProject.entity.Subject;
+import com.example.FinalSpringProject.DTO.SubjectDTO;
 import com.example.FinalSpringProject.repository.SubjectRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -14,16 +16,11 @@ public class SubjectController {
 
     private final SubjectRepository subjectRepository;
 
-    // 모든 과정 목록을 JSON 형식으로 반환
     @GetMapping("/subjects")
-    public List<Subject> getSubjects() {
-        return subjectRepository.findAll();
-    }
-
-    // 특정 과정 조회 (JSON 형식으로 반환)
-    @GetMapping("/subject/{id}")
-    public Subject getSubjectById(@PathVariable Integer id) {
-        return subjectRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 과정이 없습니다: " + id));
+    public List<SubjectDTO> getSubjects() {
+        return subjectRepository.findAll()
+                .stream()
+                .map(SubjectDTO::fromEntity)
+                .toList();
     }
 }

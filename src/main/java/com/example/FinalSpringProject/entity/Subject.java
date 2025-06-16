@@ -20,9 +20,9 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer subjectID;
 
-    @JsonIgnore
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "classID", nullable = false)
+    @JsonIgnore
     private ClassUser classUser;
 
     private String subjectTitle;
