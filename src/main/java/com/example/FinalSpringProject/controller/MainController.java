@@ -51,17 +51,17 @@ public class MainController {
         }
 
         session.setAttribute("loggedInUser", user);
+        session.setAttribute("isAdmin", user.getUserAuthority() != null && user.getUserAuthority() == 1);
 
-        // 관리자 여부 저장
-        session.setAttribute("loginUser", user.getUserID()); // (선택) userID만 별도 저장하고 싶다면
-        session.setAttribute("isAdmin", Boolean.TRUE.equals(user.getUserAuthority()));
-
-        if (Boolean.TRUE.equals(user.getUserAuthority())) {
+        // 관리자면 관리자 페이지로
+        if (user.getUserAuthority() != null && user.getUserAuthority() == 1) {
             return "redirect:/admin/login";
         }
 
+        // 일반 유저는 메인으로
         return "redirect:/main";
     }
+
 
 
     @GetMapping("/logout")
@@ -84,7 +84,7 @@ public class MainController {
     public String lifeRecordPage(HttpSession session, Model model) {
         Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
         if (isAdmin == null || !isAdmin) {
-            return "redirect:/"; // 권한 없을 경우 홈으로 리다이렉트
+            return "redirect:/";
         }
 
         List<ClassUser> userList = classUserRepository.findAll();
@@ -97,7 +97,6 @@ public class MainController {
         model.addAttribute("userList", userList);
         return "LifeRecord";
     }
-
 
 
 

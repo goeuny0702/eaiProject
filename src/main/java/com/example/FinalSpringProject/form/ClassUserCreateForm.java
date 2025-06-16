@@ -9,7 +9,7 @@ public class ClassUserCreateForm {
     private String userName;
     private String userTel;
     private String userAddress;
-    private Boolean userAuthority;
+    private Integer userAuthority;
     private String userEmail;
     private Boolean userGender;
     private Long classID;

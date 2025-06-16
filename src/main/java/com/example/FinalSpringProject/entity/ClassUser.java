@@ -1,9 +1,11 @@
 package com.example.FinalSpringProject.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
@@ -22,16 +24,14 @@ public class ClassUser {
     private String userTel;
     private String userAddress;
 
-    @Builder.Default
-    private Boolean userAuthority = false;
+    private Integer userAuthority = 0;  // 기본값 일반 사용자
+
     private String userEmail;
     private Boolean userGender;
 
-    // 양방향 연결: Bank
     @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private Bank bank;
-
 
     @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
