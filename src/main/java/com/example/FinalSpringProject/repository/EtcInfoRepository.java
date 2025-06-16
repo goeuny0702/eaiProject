@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface EtcInfoRepository extends JpaRepository<etcInfo, Long> {
     Optional<etcInfo> findByClassUser_ClassID(Long classID);
+
 }

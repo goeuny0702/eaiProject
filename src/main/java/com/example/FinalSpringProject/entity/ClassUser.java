@@ -1,5 +1,7 @@
 package com.example.FinalSpringProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,9 +29,13 @@ public class ClassUser {
 
     // 양방향 연결: Bank
     @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Bank bank;
 
-    // 양방향 연결: EtcInfo
-//    @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    private EtcInfo etcInfo;
+
+    @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private etcInfo etcInfo;
+
+
 }

@@ -19,7 +19,7 @@ public class EtcInfoController {
 
     @PostMapping
     public ResponseEntity<etcInfo> saveEtcInfo(@RequestBody EtcInfoForm form) {
-        System.out.println("🔥 받은 classID: " + form.getClassID());
+        System.out.println("받은 classID: " + form.getClassID());
 
         ClassUser user = classUserRepository.findById(form.getClassID().longValue())
                 .orElseThrow(() -> new RuntimeException("해당 classID의 유저를 찾을 수 없습니다."));

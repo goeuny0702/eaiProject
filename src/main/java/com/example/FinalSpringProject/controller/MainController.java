@@ -6,6 +6,7 @@ import com.example.FinalSpringProject.repository.ClassUserRepository;
 import com.example.FinalSpringProject.repository.SubjectRepository;
 import com.example.FinalSpringProject.service.ClassUserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,11 +74,18 @@ public class MainController {
     private ClassUserRepository classUserRepository;
 
     @GetMapping("/LifeRecord")
+    @Transactional
     public String lifeRecordPage(Model model) {
         List<ClassUser> userList = classUserRepository.findAll();
+        userList.forEach(user -> {
+            if (user.getEtcInfo() != null) {
+                user.getEtcInfo().getAuthOpinion(); // Lazy force initialize
+            }
+        });
         model.addAttribute("userList", userList);
         return "LifeRecord";
     }
+
 
 
     @GetMapping("/Edit")
