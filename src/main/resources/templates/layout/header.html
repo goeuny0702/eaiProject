@@ -13,8 +13,11 @@
             </div>
             <div class="login-links">
                 <div class="login-links">
-                    <!-- 마이페이지: 로그인 O → /student, 로그인 X → /login -->
-                    <a th:href="${session.loggedInUser != null} ? '/Edit' : '/login'" class="btn-student">마이페이지</a>
+
+                    <a th:if="${isAdminPage}" href="/student-record"
+                       class="btn-student admin-btn">학생 관리</a>
+
+                    <a th:if="${!isAdminPage}" th:href="${session.loggedInUser != null} ? '/Edit' : '/login'" class="btn-student">마이페이지</a>
 
                     <!-- 로그인/로그아웃: 텍스트와 링크 모두 분기 -->
                     <a th:if="${session.loggedInUser == null}" th:href="@{/login}" class="btn-login">로그인</a>
