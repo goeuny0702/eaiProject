@@ -2,13 +2,11 @@ package com.example.FinalSpringProject.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
+import lombok.Builder.Default;
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -28,6 +26,7 @@ public class ClassUser {
 
     private String userEmail;
     private Boolean userGender;
+    private String photoPath;
 
     @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
@@ -36,6 +35,5 @@ public class ClassUser {
     @OneToOne(mappedBy = "classUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private etcInfo etcInfo;
-
 
 }

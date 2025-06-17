@@ -1,2 +1,2 @@
-use testdb;
-select * from training;
+Use testdb;
+select * from ClassUser

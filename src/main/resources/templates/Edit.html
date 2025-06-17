@@ -14,12 +14,26 @@
 <div class="container">
     <!-- 왼쪽 이미지 등록 영역 -->
     <div class="left-box">
-        <div class="photo"></div>
-        <div class="btn-group">
-            <button type="button">등록</button>
-            <button type="button">삭제</button>
+        <!-- 프로필 사진 출력 -->
+        <div class="photo">
+            <img th:src="@{${user.photoPath}}" alt="프로필 이미지" width="150" height="150" style="border-radius: 50%;">
         </div>
+
+        <!-- 업로드/삭제 버튼 영역 -->
+        <form th:action="@{'/Edit/' + ${user.userID} + '/image'}" method="post" enctype="multipart/form-data">
+            <div class="btn-group">
+                <input type="file" name="photo" accept="image/*" required style="margin-bottom: 10px;">
+                <button type="submit">등록</button>
+            </div>
+        </form>
+
+        <form th:action="@{'/Edit/' + ${user.userID} + '/delete-photo'}" method="post">
+            <div class="btn-group">
+                <button type="submit" style="background-color: red; color: white;">삭제</button>
+            </div>
+        </form>
     </div>
+
 
     <!-- 오른쪽 폼 입력 영역 -->
     <form class="form-box" id="editForm">
