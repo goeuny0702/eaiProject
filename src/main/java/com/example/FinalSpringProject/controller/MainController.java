@@ -9,7 +9,10 @@ import com.example.FinalSpringProject.service.ClassUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-
+import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
+import java.util.UUID;
+import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,7 +67,6 @@ public class MainController {
     }
 
 
-
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();  // 세션 전체 삭제
@@ -72,10 +74,14 @@ public class MainController {
     }
 
     @GetMapping("/signin")
-    public String showSigninPage() { return "signin"; }
+    public String showSigninPage() {
+        return "signin";
+    }
 
     @GetMapping("/main")
-    public String showMainPage() { return "main"; }
+    public String showMainPage() {
+        return "main";
+    }
 
     @Autowired
     private ClassUserRepository classUserRepository;
@@ -105,11 +111,46 @@ public class MainController {
     }
 
 
-
-    @GetMapping("/Edit")
-    public String showEditPage() {
-        return "Edit";
+    @GetMapping("/Edit/{userID}")
+    public String showEditPage(@PathVariable String userID, Model model) {
+        ClassUser user = classUserRepository.findByUserID(userID);
+        if (user == null) {
+            throw new IllegalArgumentException("사용자 없음");
+        }
+        model.addAttribute("user", user);
+        return "Edit";  // templates/Edit.html
     }
+
+    @PostMapping("/Edit/{userID}/image")
+    public String uploadPhoto(@PathVariable String userID,
+                              @RequestParam("photo") MultipartFile photo) throws IOException {
+
+        ClassUser user = classUserRepository.findByUserID(userID);
+        if (user == null) {
+            throw new IllegalArgumentException("사용자 없음");
+        }
+        if (!photo.isEmpty()) {
+
+            String originalFilename = photo.getOriginalFilename();
+            String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
+            String filename = UUID.randomUUID() + "." + extension;
+
+
+            // 💡 저장 위치도 배포 고려해서 변경 권장
+            String uploadPath = new File("").getAbsolutePath() + "/src/main/resources/static/image/";
+            File folder = new File(uploadPath);
+            if (!folder.exists()) folder.mkdirs();
+
+            File saveFile = new File(uploadPath + filename);
+            photo.transferTo(saveFile);
+
+            user.setPhotoPath("/image/" + filename);
+            classUserRepository.save(user);
+        }
+
+        return "redirect:/Edit/" + user.getUserID();
+    }
+
 
     @GetMapping("/Calendar")
     public String showCalendarPage() {
