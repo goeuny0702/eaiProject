@@ -18,7 +18,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 @Controller
@@ -118,7 +119,7 @@ public class MainController {
             throw new IllegalArgumentException("사용자 없음");
         }
         model.addAttribute("user", user);
-        return "Edit";  // templates/Edit.html
+        return "Edit";
     }
 
     @PostMapping("/Edit/{userID}/image")
@@ -129,27 +130,55 @@ public class MainController {
         if (user == null) {
             throw new IllegalArgumentException("사용자 없음");
         }
+
         if (!photo.isEmpty()) {
 
-            String originalFilename = photo.getOriginalFilename();
-            String extension = originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase();
-            String filename = UUID.randomUUID() + "." + extension;
+            // 기존 파일 있으면 삭제
+            if (user.getPhotoPath() != null && !user.getPhotoPath().isEmpty()) {
+                String oldFileName = user.getPhotoPath().replace("/image/", "");
+                File oldFile = new File(new File("").getAbsolutePath() + "/src/main/resources/static/image/" + oldFileName);
+                if (oldFile.exists()) oldFile.delete();
+            }
 
-
-            // 💡 저장 위치도 배포 고려해서 변경 권장
+            // 새 파일명은 항상 png로 저장
+            String filename = UUID.randomUUID() + ".png";
             String uploadPath = new File("").getAbsolutePath() + "/src/main/resources/static/image/";
             File folder = new File(uploadPath);
             if (!folder.exists()) folder.mkdirs();
 
-            File saveFile = new File(uploadPath + filename);
-            photo.transferTo(saveFile);
+            // 이미지 → png 변환 저장
+            BufferedImage image = ImageIO.read(photo.getInputStream());
+            ImageIO.write(image, "png", new File(uploadPath + filename));
 
+            // DB에 경로 저장
             user.setPhotoPath("/image/" + filename);
             classUserRepository.save(user);
         }
 
-        return "redirect:/Edit/" + user.getUserID();
+        return "redirect:/Edit/" + userID;
     }
+
+    @PostMapping("/Edit/{userID}/delete-photo")
+    public String deletePhoto(@PathVariable String userID) {
+        ClassUser user = classUserRepository.findByUserID(userID);
+        if (user == null) {
+            throw new IllegalArgumentException("사용자 없음");
+        }
+
+        // 실제 파일 삭제
+        if (user.getPhotoPath() != null && !user.getPhotoPath().isEmpty()) {
+            String filename = user.getPhotoPath().replace("/image/", "");
+            File file = new File(new File("").getAbsolutePath() + "/src/main/resources/static/image/" + filename);
+            if (file.exists()) file.delete();
+        }
+
+        // 경로 비움
+        user.setPhotoPath("");
+        classUserRepository.save(user);
+
+        return "redirect:/Edit/" + userID;
+    }
+
 
 
     @GetMapping("/Calendar")
@@ -186,5 +215,7 @@ public class MainController {
     public String showLoginPage() {
         return "login";
     }
+
+
 
 }

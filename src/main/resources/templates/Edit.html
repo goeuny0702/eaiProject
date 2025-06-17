@@ -16,7 +16,7 @@
     <div class="left-box">
         <!-- 프로필 사진 출력 -->
         <div class="photo">
-            <img th:src="@{${user.photoPath}}" alt="프로필 이미지" width="150" height="150" style="border-radius: 50%;">
+            <img th:src="@{${user.photoPath}}" alt="프로필 이미지"  style="width: 100%; height: 100%; object-fit: cover;">
         </div>
 
         <!-- 업로드/삭제 버튼 영역 -->
