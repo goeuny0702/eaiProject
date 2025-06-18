@@ -1,19 +1,41 @@
 const events = [
   {
-    title: "차세대 AI 예측 Solution 개발 (자바,파이썬,RPA) (9회차)",
-    start: new Date("2025-05-27"),
-    end: new Date("2025-05-30"),
+    title: "프로젝트 기반 풀스택(JAVA, Spring) 과정",
+    start: new Date("2025-06-02"),
+    end: new Date("2025-11-17"),
     color: "#f28b82",
-    round: "9"
+    round: "1"
   },
   {
-    title: "차세대 AI 예측 Solution 개발 (자바,파이썬,RPA) (10회차)",
-    start: new Date("2025-05-28"),
-    end: new Date("2025-06-06"),
-    color: "#aecbfa",
-    round: "10"
+    title: "시네이터 언리얼(Unreal) 게임프로그래밍(VR콘텐츠)",
+    start: new Date("2025-06-04"),
+    end: new Date("2026-01-14"),
+    color: "#fbbc04",
+    round: "2"
+  },
+  {
+    title: "AI프로젝트 풀스택(Java, Python, React) 딥러닝(자연어처리)",
+    start: new Date("2025-06-04"),
+    end: new Date("2025-12-17"),
+    color: "#34a853",
+    round: "3"
+  },
+  {
+    title: "[풀스택][클라우드 기반] 취업연계 부트캠프(자바,도커,보안)",
+    start: new Date("2025-06-05"),
+    end: new Date("2025-12-18"),
+    color: "#a142f4",
+    round: "4"
+  },
+  {
+    title: "기업 실무 풀스택 개발자 양성(자바,스프링,리액트,뷰,클라우드)",
+    start: new Date("2025-06-05"),
+    end: new Date("2025-12-18"),
+    color: "#ff6d01",
+    round: "5"
   }
 ];
+
 
 let currentMonth = 5; // June (0-based index)
 let currentYear = 2025;
@@ -83,3 +105,4 @@ function changeMonth(offset) {
 document.getElementById("courseSelector").addEventListener("change", renderCalendar);
 
 window.onload = renderCalendar;
+
