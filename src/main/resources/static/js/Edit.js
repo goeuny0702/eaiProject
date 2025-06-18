@@ -1,37 +1,40 @@
 function saveAll() {
   const fields = [
-    'instituteName', 'courseName', 'trainingPeriod',
     'name', 'phone', 'email',
     'bankName', 'bankAddress', 'bankOwner',
     'selectedCourse', 'sessionNumber', 'memo'
   ];
 
+
   const data = {};
   const bankData = {};
+  const skipStaticFields = ['instituteName', 'courseName', 'trainingPeriod'];
 
   // 입력 필드 순회해서 데이터 수집
   fields.forEach((field) => {
-    const input = document.querySelector(`[name="${field}"]`);
-    const text = document.getElementById(`${field}-text`);
+      if (skipStaticFields.includes(field)) return; // ← 훈련기관 정보는 제외
 
-    if (input && text) {
-      let value = input.tagName === 'SELECT'
-        ? input.options[input.selectedIndex].text
-        : input.value;
+      const input = document.querySelector(`[name="${field}"]`);
+      const text = document.getElementById(`${field}-text`);
 
-      text.innerText = value;
-      input.style.display = 'none';
-      text.style.display = 'block';
+      if (input && text) {
+        let value = input.tagName === 'SELECT'
+          ? input.options[input.selectedIndex].text
+          : input.value;
 
-      data[field] = value;
+        text.innerText = value;
+        input.style.display = 'none';
+        text.style.display = 'block';
 
-      if (['bankName', 'bankAddress', 'bankOwner'].includes(field)) {
-        bankData[field] = value;
+        data[field] = value;
+
+        if (['bankName', 'bankAddress', 'bankOwner'].includes(field)) {
+          bankData[field] = value;
+        }
       }
-    }
-  });
+    });
 
-  // ✅ 개인정보 전송 (data가 준비된 뒤에 personalData 추출)
+  //  개인정보 전송 (data가 준비된 뒤에 personalData 추출)
   const personalData = {
     name: data.name,
     phone: data.phone,
@@ -47,13 +50,13 @@ function saveAll() {
   })
     .then(response => {
       if (!response.ok) throw new Error("개인정보 저장 실패");
-      console.log("✅ 개인정보 저장 완료");
+      console.log(" 개인정보 저장 완료");
     })
     .catch(error => {
-      console.error("❌ 개인정보 저장 오류:", error);
+      console.error(" 개인정보 저장 오류:", error);
     });
 
-  // ✅ 은행 정보 전송
+  //  은행 정보 전송
   bankData['classId'] = classID;
 
   fetch('/api/bank', {
@@ -68,13 +71,13 @@ function saveAll() {
       return response.json();
     })
     .then(data => {
-      console.log("✅ 은행 정보 저장 완료:", data);
+      console.log(" 은행 정보 저장 완료:", data);
     })
     .catch(error => {
-      console.error("❌ 은행 정보 저장 오류:", error);
+      console.error(" 은행 정보 저장 오류:", error);
     });
 
-  // ✅ sessionStorage 저장 및 버튼 전환
+  //  sessionStorage 저장 및 버튼 전환
   sessionStorage.setItem('userForm', JSON.stringify(data));
   document.getElementById('saveBtn').style.display = 'none';
   document.getElementById('editBtn').style.display = 'inline-block';
@@ -108,7 +111,6 @@ function loadBankInfo() {
 
 function toggleEdit() {
   const fields = [
-    'instituteName', 'courseName', 'trainingPeriod',
     'name', 'phone', 'email',
     'bankName', 'bankAddress', 'bankOwner',
     'selectedCourse', 'sessionNumber', 'memo'
@@ -129,6 +131,23 @@ function toggleEdit() {
 }
 
 window.onload = () => {
+  const staticTrainingData = {
+      "instituteName": "재현스쿨",
+      "courseName": "AI 융합 서비스 개발자 양성과정",
+      "trainingPeriod": "2025.01.02 ~ 2025.06.30"
+  };
+
+    Object.keys(staticTrainingData).forEach((key) => {
+      const input = document.getElementById(`${key}-input`);
+      const text = document.getElementById(`${key}-text`);
+
+      if (input && text) {
+        input.style.display = 'none';
+        text.innerText = staticTrainingData[key];
+        text.style.display = 'block';
+      }
+  });
+
   const stored = sessionStorage.getItem('userForm');
   if (stored) {
     const data = JSON.parse(stored);
@@ -172,10 +191,10 @@ window.onload = () => {
       document.getElementById("termination-input").value = data.interestJob || '';
     })
     .catch(error => {
-      console.error("❌ 기타 평가 정보 불러오기 오류:", error);
+      console.error("기타 평가 정보 불러오기 오류:", error);
     });
 };
 
-function goNext() {
-  alert("다음 단계로 이동합니다.");
-}
+//function goNext() {
+//  alert("다음 단계로 이동합니다.");
+//}
