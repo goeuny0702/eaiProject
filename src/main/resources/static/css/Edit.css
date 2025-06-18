@@ -24,11 +24,14 @@ body {
   height: 260px;
   border: 1px solid #ccc;
   background-color: #f5f5f5;
+  cursor: pointer; /* 사진 클릭 시 손 모양으로 변경 */
 }
 
 .btn-group {
+  display: flex;             /* 버튼 가로 배치 */
+  justify-content: center;   /* 가운데 정렬 */
+  gap: 10px;                 /* 버튼 사이 간격 */
   margin-top: 10px;
-  text-align: right;
 }
 
 .btn-group button {
@@ -36,7 +39,6 @@ body {
   color: white;
   border: none;
   padding: 6px 16px;
-  margin: 0 5px;
   cursor: pointer;
   border-radius: 8px;
 }
@@ -62,8 +64,6 @@ body {
   margin-bottom: 10px;
 }
 
-
-
 .form-label {
   background-color: #e6e6e6;
   width: 140px;
@@ -80,7 +80,7 @@ body {
   padding: 10px;
   border: 1px solid #ccc;
   box-sizing: border-box;
-  width : 100%;
+  width: 100%;
 }
 
 /* 텍스트 표시용 span */
@@ -113,7 +113,6 @@ textarea {
   height: 150px;
   resize: vertical;
 }
-
 
 /* 저장 버튼 */
 .bottom-buttons {
