@@ -9,6 +9,7 @@ import com.example.FinalSpringProject.service.ClassUserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.util.UUID;
@@ -80,9 +81,17 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String showMainPage() {
-        return "main";
+    public String mainPage(HttpSession session, Model model) {
+        ClassUser user = (ClassUser) session.getAttribute("loggedInUser");
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "main"; // 로그인 여부와 상관없이 메인페이지 보여줌
     }
+
+
 
     @Autowired
     private ClassUserRepository classUserRepository;

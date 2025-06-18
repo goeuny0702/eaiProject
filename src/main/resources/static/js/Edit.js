@@ -120,7 +120,6 @@ window.onload = () => {
       const text = document.getElementById(`${key}-text`);
 
       if (input && text) {
-        // 복원 시 SELECT는 text에 맞는 value를 찾아서 설정
         if (input.tagName === 'SELECT') {
           for (let i = 0; i < input.options.length; i++) {
             if (input.options[i].text === data[key]) {
@@ -133,7 +132,6 @@ window.onload = () => {
         }
 
         text.innerText = data[key];
-
         input.style.display = 'none';
         text.style.display = 'block';
       }
@@ -144,6 +142,15 @@ window.onload = () => {
   }
 
   loadBankInfo();
+
+  // 관리자 의견 자동 불러오기
+  fetch('/api/etcinfo/' + classID)
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById("attitude-input").value = data.authOpinion || '';
+      document.getElementById("termination-input").value = data.interestJob || '';
+    });
+
 };
 
 function goNext() {

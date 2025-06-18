@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.w3.org/1999/xhtml">
-<link rel="stylesheet" th:href="@{/css/login.css}">
-<link rel="stylesheet" th:href="@{/css/header.css}">
-<link rel="stylesheet" th:href="@{/css/footer.css}">
-<!--<script th:src="@{/js/login.js}"></script>-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인 페이지</title>
 
-<script th:inline="javascript">
-  /*<![CDATA[*/
+  <link rel="stylesheet" th:href="@{/css/login.css}">
+  <link rel="stylesheet" th:href="@{/css/header.css}">
+  <link rel="stylesheet" th:href="@{/css/footer.css}">
+
+  <script th:inline="javascript">
+    /*<![CDATA[*/
     var errorMessage = /*[[${errorMessage}]]*/ null;
     if(errorMessage) {
       alert(errorMessage);
     }
-  /*]]>*/
-</script>
-
-<head>
-    <meta charset="UTF-8">
-    <title>로그인 페이지</title>
+    /*]]>*/
+  </script>
 </head>
+
 <body>
 <div th:replace="layout/header :: header"></div>
+
 <form action="/login" method="post">
   <div class="container">
     <div class="form-group">
@@ -42,11 +43,9 @@
         <button class="login-btn" type="submit">로그인</button>
       </div>
     </div>
-    <script th:if="${errorMessage}">
-      alert([[${errorMessage}]]);
-    </script>
   </div>
 </form>
+
 <div th:replace="layout/footer :: footer"></div>
 </body>
 </html>
