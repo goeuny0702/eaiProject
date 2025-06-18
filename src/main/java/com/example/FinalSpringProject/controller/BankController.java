@@ -17,25 +17,23 @@ public class BankController {
     private final BankRepository bankRepository;
     private final ClassUserRepository classUserRepository;
 
-    // BankForm을 통해 은행 정보 저장
+    // 은행 정보 저장 (POST)
     @PostMapping
     public ResponseEntity<Bank> saveBank(@RequestBody BankForm form) {
         System.out.println("받은 form 데이터: " + form);
         System.out.println("classID 확인: " + form.getClassId());
 
-        // classUser 조회
         ClassUser user = classUserRepository.findById(Long.valueOf(form.getClassId()))
                 .orElseThrow(() -> new RuntimeException("해당 classID의 유저를 찾을 수 없습니다."));
 
-        // 기존 Bank 조회
-        Bank bank = bankRepository.findByClassUser(user)
+        Bank bank = bankRepository.findByClassUser_ClassID(user.getClassID())
                 .orElseGet(() -> {
                     Bank newBank = new Bank();
                     newBank.setClassUser(user);
                     return newBank;
                 });
 
-        // 폼 데이터로 덮어쓰기
+
         bank.setBankName(form.getBankName());
         bank.setBankAddress(form.getBankAddress());
         bank.setBankOwner(form.getBankOwner());
@@ -43,11 +41,12 @@ public class BankController {
         return ResponseEntity.ok(bankRepository.save(bank));
     }
 
-
-
-    // 기존 저장된 은행 정보 불러오기
-    @GetMapping("/{id}")
-    public Bank getBank(@PathVariable Integer id) {
-        return bankRepository.findById(id).orElse(null);
+    // classID 기준으로 유저의 은행 정보 조회 (GET)
+    @GetMapping("/{classId}")
+    public ResponseEntity<Bank> getBankByClassId(@PathVariable Long classId) {
+        return bankRepository.findByClassUser_ClassID(classId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
+

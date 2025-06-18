@@ -8,11 +8,10 @@
     <link rel="stylesheet" th:href="@{/css/Edit.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <script th:src="@{/js/Edit.js}" defer></script>
-    <script>
+    <script th:inline="javascript">
         const userID = /*[[${user.userID}]]*/ 'defaultUser';
         const classID = /*[[${user.classID}]]*/ 1;
     </script>
-
 </head>
 <body>
 <div th:replace="layout/header :: header"></div>
