@@ -125,10 +125,11 @@ public class MainController {
     public String showEditPage(@PathVariable String userID, Model model) {
         ClassUser user = classUserRepository.findByUserID(userID);
         if (user == null) {
-            throw new IllegalArgumentException("사용자 없음");
+            throw new IllegalArgumentException("사용자를 찾을 수 없습니다: " + userID);
         }
+
         model.addAttribute("user", user);
-        return "Edit";
+        return "edit"; // ← 주의: 템플릿 파일명이 edit.html이면 소문자로!
     }
 
     @PostMapping("/Edit/{userID}/image")
@@ -165,6 +166,29 @@ public class MainController {
         }
 
         return "redirect:/Edit/" + userID;
+    }
+
+    @PostMapping("/Edit/{userID}")
+    public String saveUserInfo(@PathVariable String userID,
+                               @RequestParam String name,
+                               @RequestParam String phone,
+                               @RequestParam String email,
+                               Model model) {
+
+        ClassUser user = classUserRepository.findByUserID(userID);
+        if (user == null) {
+            throw new IllegalArgumentException("사용자를 찾을 수 없습니다: " + userID);
+        }
+
+        user.setUserName(name);
+        user.setUserTel(phone);
+        user.setUserEmail(email);
+
+        classUserRepository.save(user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("message", "정보가 저장되었습니다.");
+        return "edit";
     }
 
 

@@ -6,6 +6,28 @@ function saveAll() {
     'selectedCourse', 'sessionNumber', 'memo'
   ];
 
+  // 개인정보 전송
+  const personalData = {
+    name: data.name,
+    phone: data.phone,
+    email: data.email
+  };
+
+  fetch('/Edit/' + userID, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams(personalData)
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("개인정보 저장 실패");
+    console.log("개인정보 저장 완료");
+  })
+  .catch(error => {
+    console.error("개인정보 저장 오류:", error);
+  });
+
   const data = {};
   const bankData = {};
 
