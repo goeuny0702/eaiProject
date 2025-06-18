@@ -12,13 +12,29 @@ body {
 }
 
 h1 {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
+.month-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px 0;
+    text-align: center;
+}
+
+#monthLabel {
+    font-size: 30px;
+    margin: 0 10px;
+}
+
+.selector-wrap {
+    margin: 20px 0;
+
 }
 
 .header,
 .calendar-header-bar {
-  display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
