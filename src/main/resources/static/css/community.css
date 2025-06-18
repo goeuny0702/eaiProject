@@ -1,0 +1,118 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.community-title {
+    padding-top: 60px;
+    text-align: center;
+}
+
+.main-container {
+    height: 740px;
+    border: 1px solid #ddd;
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title-line {
+    border-bottom: 2px solid #ddd;
+    display: flex;
+    gap: 8px 16px;
+    margin-bottom: 20px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 1fr 15fr;
+}
+
+.content .text {
+    line-height: 1.6;
+}
+
+.image-wrapper {
+    margin: 16px 0;
+    text-align: center;
+}
+
+.image-wrapper img {
+    max-width: 800px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.comment-container {
+    max-width: 950px;
+    margin: 0px auto 50px auto;
+    padding: 20px;
+}
+
+.comment-box {
+    height: 60px;
+    display: flex;
+    gap: 10px;
+}
+
+.comment-box input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.submit-button {
+    padding: 8px 16px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.comment-box button:hover {
+    background-color: #1c5980;
+}
+
+.comment-list {
+    margin-top: 5px;
+}
+
+.comment-title {
+    margin-top: 20px;
+}
+
+.comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.comment-display-box {
+    display: block;
+}
+
+.comment-line {
+    border-bottom: 1px solid #ddd;
+    grid-template-columns: 1fr 4fr 1fr;
+    display: grid;
+    gap: 10px;
+}
+
+.delete-btn {
+    padding: 2px 16px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

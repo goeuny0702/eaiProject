@@ -1,16 +1,24 @@
 package com.example.FinalSpringProject.controller;
+import com.example.FinalSpringProject.DTO.CommentDTO;
 import com.example.FinalSpringProject.DTO.SubjectDTO;
 import com.example.FinalSpringProject.entity.ClassUser;
+import com.example.FinalSpringProject.entity.Comment;
 import com.example.FinalSpringProject.entity.Subject;
 import com.example.FinalSpringProject.form.ClassUserCreateForm;
 import com.example.FinalSpringProject.repository.ClassUserRepository;
 import com.example.FinalSpringProject.repository.SubjectRepository;
 import com.example.FinalSpringProject.service.ClassUserService;
+import com.example.FinalSpringProject.service.CommentService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
+import java.net.http.HttpRequest;
+import java.security.Principal;
 import java.util.UUID;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -194,11 +202,48 @@ public class MainController {
         return "Course";
     }
 
+    private final CommentService commentService;
 
     @GetMapping("/community")
-    public String showCommunityPage() {
+    public String showCommunityPage(Model model, Principal principal) {
+        List<Comment> comments = commentService.getAllComments();
+
+        model.addAttribute("comments", comments);
+        if (principal != null) {
+            model.addAttribute("currentUserId", principal.getName());
+        }
+
         return "community";
     }
+
+    @PostMapping("/comments")
+    public String addComment(@ModelAttribute("comment") CommentDTO dto, HttpSession session) {
+        // 저장했던 객체 꺼내기
+        ClassUser principal = (ClassUser) session.getAttribute("loggedInUser");
+        if (principal == null) {
+            return "redirect:/login";
+        }
+
+        commentService.saveComment(dto.getComment(), principal.getUserID());
+        return "redirect:/community";  // 다시 community 페이지로
+    }
+
+
+    @PostMapping("/comments/delete")
+    public String deleteComment(@RequestParam Long commentId, HttpSession session) {
+        ClassUser user = (ClassUser) session.getAttribute("loggedInUser");
+
+        if (user == null) {
+            throw new RuntimeException("로그인한 사용자만 삭제 가능");
+        }
+
+        commentService.deleteComment(commentId, user.getUserID());
+        return "redirect:/community";
+    }
+
+
+
+
 
     private final SubjectRepository subjectRepository;
 
@@ -215,7 +260,6 @@ public class MainController {
     public String showLoginPage() {
         return "login";
     }
-
 
 
 }
