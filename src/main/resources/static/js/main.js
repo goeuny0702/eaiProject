@@ -115,3 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+function goToCalendarPage() {
+    window.location.href = "/Calendar";
+}
