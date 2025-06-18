@@ -84,9 +84,14 @@ function loadBankInfo() {
   fetch('/api/bank/' + classID)
     .then(response => {
       if (!response.ok) throw new Error("불러오기 실패");
-      return response.json();
+      return response.text(); // ← text로 먼저 받기
     })
-    .then(data => {
+    .then(text => {
+      console.log("서버 응답 원본:", text);
+
+      // JSON 파싱 시도
+      const data = JSON.parse(text);
+
       document.getElementById("bankName").value = data.bankName || '';
       document.getElementById("bankAddress").value = data.bankAddress || '';
       document.getElementById("bankOwner").value = data.bankOwner || '';
@@ -96,9 +101,10 @@ function loadBankInfo() {
       document.getElementById("bankOwner-text").innerText = data.bankOwner || '';
     })
     .catch(error => {
-      console.error("❌ 은행 정보 불러오기 오류:", error);
+      console.error("은행 정보 불러오기 오류:", error);
     });
 }
+
 
 function toggleEdit() {
   const fields = [
@@ -153,7 +159,7 @@ window.onload = () => {
     document.getElementById('editBtn').style.display = 'inline-block';
   }
 
-  // ✅ 은행 정보 & etcInfo 불러오기
+  // 은행 정보 & etcInfo 불러오기
   loadBankInfo();
 
   fetch('/api/etcinfo/' + classID)
