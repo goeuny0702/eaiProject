@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.net.http.HttpRequest;
@@ -88,9 +88,17 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String showMainPage() {
-        return "main";
+    public String mainPage(HttpSession session, Model model) {
+        ClassUser user = (ClassUser) session.getAttribute("loggedInUser");
+
+        if (user != null) {
+            model.addAttribute("user", user);
+        }
+
+        return "main"; // 로그인 여부와 상관없이 메인페이지 보여줌
     }
+
+
 
     @Autowired
     private ClassUserRepository classUserRepository;
@@ -124,10 +132,11 @@ public class MainController {
     public String showEditPage(@PathVariable String userID, Model model) {
         ClassUser user = classUserRepository.findByUserID(userID);
         if (user == null) {
-            throw new IllegalArgumentException("사용자 없음");
+            throw new IllegalArgumentException("사용자를 찾을 수 없습니다: " + userID);
         }
+
         model.addAttribute("user", user);
-        return "Edit";
+        return "edit"; // ← 주의: 템플릿 파일명이 edit.html이면 소문자로!
     }
 
     @PostMapping("/Edit/{userID}/image")
@@ -141,30 +150,54 @@ public class MainController {
 
         if (!photo.isEmpty()) {
 
-            // 기존 파일 있으면 삭제
-            if (user.getPhotoPath() != null && !user.getPhotoPath().isEmpty()) {
-                String oldFileName = user.getPhotoPath().replace("/image/", "");
-                File oldFile = new File(new File("").getAbsolutePath() + "/src/main/resources/static/image/" + oldFileName);
-                if (oldFile.exists()) oldFile.delete();
-            }
-
-            // 새 파일명은 항상 png로 저장
-            String filename = UUID.randomUUID() + ".png";
-            String uploadPath = new File("").getAbsolutePath() + "/src/main/resources/static/image/";
+            // ✅ [1] 폴더 없으면 생성
+            String uploadPath = "C:/upload/image/";
             File folder = new File(uploadPath);
             if (!folder.exists()) folder.mkdirs();
 
-            // 이미지 → png 변환 저장
+            // ✅ [2] 기존 파일 삭제
+            if (user.getPhotoPath() != null && !user.getPhotoPath().isEmpty()) {
+                String oldFileName = user.getPhotoPath().replace("/image/", "");
+                File oldFile = new File(uploadPath + oldFileName);
+                if (oldFile.exists()) oldFile.delete();
+            }
+
+            // ✅ [3] 새 파일 저장
+            String filename = UUID.randomUUID() + ".png";
             BufferedImage image = ImageIO.read(photo.getInputStream());
             ImageIO.write(image, "png", new File(uploadPath + filename));
 
-            // DB에 경로 저장
+            // ✅ [4] DB 저장
             user.setPhotoPath("/image/" + filename);
             classUserRepository.save(user);
         }
 
         return "redirect:/Edit/" + userID;
     }
+
+    @PostMapping("/Edit/{userID}")
+    public String saveUserInfo(@PathVariable String userID,
+                               @RequestParam String name,
+                               @RequestParam String phone,
+                               @RequestParam String email,
+                               Model model) {
+
+        ClassUser user = classUserRepository.findByUserID(userID);
+        if (user == null) {
+            throw new IllegalArgumentException("사용자를 찾을 수 없습니다: " + userID);
+        }
+
+        user.setUserName(name);
+        user.setUserTel(phone);
+        user.setUserEmail(email);
+
+        classUserRepository.save(user);
+
+        model.addAttribute("user", user);
+        model.addAttribute("message", "정보가 저장되었습니다.");
+        return "edit";
+    }
+
 
     @PostMapping("/Edit/{userID}/delete-photo")
     public String deletePhoto(@PathVariable String userID) {
@@ -176,7 +209,7 @@ public class MainController {
         // 실제 파일 삭제
         if (user.getPhotoPath() != null && !user.getPhotoPath().isEmpty()) {
             String filename = user.getPhotoPath().replace("/image/", "");
-            File file = new File(new File("").getAbsolutePath() + "/src/main/resources/static/image/" + filename);
+            File file = new File("C:/upload/image/" + filename);
             if (file.exists()) file.delete();
         }
 
