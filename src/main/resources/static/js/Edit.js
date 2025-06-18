@@ -1,48 +1,63 @@
 function saveAll() {
   const fields = [
-    'instituteName', 'courseName', 'trainingPeriod',
     'name', 'phone', 'email',
     'bankName', 'bankAddress', 'bankOwner',
     'selectedCourse', 'sessionNumber', 'memo'
   ];
 
+
   const data = {};
   const bankData = {};
+  const skipStaticFields = ['instituteName', 'courseName', 'trainingPeriod'];
 
+  // 입력 필드 순회해서 데이터 수집
   fields.forEach((field) => {
-    const input = document.querySelector(`[name="${field}"]`);
-    const text = document.getElementById(`${field}-text`);
+      if (skipStaticFields.includes(field)) return; // ← 훈련기관 정보는 제외
 
-    if (input && text) {
-      let value = '';
+      const input = document.querySelector(`[name="${field}"]`);
+      const text = document.getElementById(`${field}-text`);
 
-      if (input.tagName === 'SELECT') {
-        value = input.options[input.selectedIndex].text;
-      } else {
-        value = input.value;
+      if (input && text) {
+        let value = input.tagName === 'SELECT'
+          ? input.options[input.selectedIndex].text
+          : input.value;
+
+        text.innerText = value;
+        input.style.display = 'none';
+        text.style.display = 'block';
+
+        data[field] = value;
+
+        if (['bankName', 'bankAddress', 'bankOwner'].includes(field)) {
+          bankData[field] = value;
+        }
       }
+    });
 
-      text.innerText = value;
+  //  개인정보 전송 (data가 준비된 뒤에 personalData 추출)
+  const personalData = {
+    name: data.name,
+    phone: data.phone,
+    email: data.email
+  };
 
-      input.style.display = 'none';
-      text.style.display = 'block';
+  fetch('/Edit/' + userID, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams(personalData)
+  })
+    .then(response => {
+      if (!response.ok) throw new Error("개인정보 저장 실패");
+      console.log(" 개인정보 저장 완료");
+    })
+    .catch(error => {
+      console.error(" 개인정보 저장 오류:", error);
+    });
 
-      data[field] = value;
-
-      // 은행 관련 필드는 bankData에 그대로 담기
-      if (field === 'bankName' || field === 'bankAddress' || field === 'bankOwner') {
-        bankData[field] = value;
-      }
-    }
-  });
-
-  // sessionStorage에 전체 입력값 저장
-  sessionStorage.setItem('userForm', JSON.stringify(data));
-
-  // 서버에 은행 정보 전송
-  bankData['classId'] = 1;  // 실제 classID로 교체 필요
-
-  console.log("서버에 보낼 데이터:", bankData);
+  //  은행 정보 전송
+  bankData['classId'] = classID;
 
   fetch('/api/bank', {
     method: 'POST',
@@ -50,31 +65,36 @@ function saveAll() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(bankData)
+  })
+    .then(response => {
+      if (!response.ok) throw new Error("은행 정보 저장 실패");
+      return response.json();
+    })
+    .then(data => {
+      console.log(" 은행 정보 저장 완료:", data);
+    })
+    .catch(error => {
+      console.error(" 은행 정보 저장 오류:", error);
+    });
 
-  })
-  .then(response => {
-    if (!response.ok) throw new Error("은행 정보 저장 실패");
-    return response.json();
-  })
-  .then(data => {
-    console.log("은행 정보 저장 완료:", data);
-  })
-  .catch(error => {
-    console.error("은행 정보 저장 오류:", error);
-  });
-
-  // 버튼 전환
+  //  sessionStorage 저장 및 버튼 전환
+  sessionStorage.setItem('userForm', JSON.stringify(data));
   document.getElementById('saveBtn').style.display = 'none';
   document.getElementById('editBtn').style.display = 'inline-block';
 }
 
 function loadBankInfo() {
-  fetch('/api/bank/1') // 예시 classID, 실제 로그인값으로 교체 필요
+  fetch('/api/bank/' + classID)
     .then(response => {
       if (!response.ok) throw new Error("불러오기 실패");
-      return response.json();
+      return response.text(); // ← text로 먼저 받기
     })
-    .then(data => {
+    .then(text => {
+      console.log("서버 응답 원본:", text);
+
+      // JSON 파싱 시도
+      const data = JSON.parse(text);
+
       document.getElementById("bankName").value = data.bankName || '';
       document.getElementById("bankAddress").value = data.bankAddress || '';
       document.getElementById("bankOwner").value = data.bankOwner || '';
@@ -88,9 +108,9 @@ function loadBankInfo() {
     });
 }
 
+
 function toggleEdit() {
   const fields = [
-    'instituteName', 'courseName', 'trainingPeriod',
     'name', 'phone', 'email',
     'bankName', 'bankAddress', 'bankOwner',
     'selectedCourse', 'sessionNumber', 'memo'
@@ -111,6 +131,23 @@ function toggleEdit() {
 }
 
 window.onload = () => {
+  const staticTrainingData = {
+      "instituteName": "재현스쿨",
+      "courseName": "AI 융합 서비스 개발자 양성과정",
+      "trainingPeriod": "2025.01.02 ~ 2025.06.30"
+  };
+
+    Object.keys(staticTrainingData).forEach((key) => {
+      const input = document.getElementById(`${key}-input`);
+      const text = document.getElementById(`${key}-text`);
+
+      if (input && text) {
+        input.style.display = 'none';
+        text.innerText = staticTrainingData[key];
+        text.style.display = 'block';
+      }
+  });
+
   const stored = sessionStorage.getItem('userForm');
   if (stored) {
     const data = JSON.parse(stored);
@@ -120,7 +157,6 @@ window.onload = () => {
       const text = document.getElementById(`${key}-text`);
 
       if (input && text) {
-        // 복원 시 SELECT는 text에 맞는 value를 찾아서 설정
         if (input.tagName === 'SELECT') {
           for (let i = 0; i < input.options.length; i++) {
             if (input.options[i].text === data[key]) {
@@ -133,7 +169,6 @@ window.onload = () => {
         }
 
         text.innerText = data[key];
-
         input.style.display = 'none';
         text.style.display = 'block';
       }
@@ -143,9 +178,23 @@ window.onload = () => {
     document.getElementById('editBtn').style.display = 'inline-block';
   }
 
+  // 은행 정보 & etcInfo 불러오기
   loadBankInfo();
+
+  fetch('/api/etcinfo/' + classID)
+    .then(response => {
+      if (!response.ok) throw new Error("기타 평가 정보 불러오기 실패");
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById("attitude-input").value = data.authOpinion || '';
+      document.getElementById("termination-input").value = data.interestJob || '';
+    })
+    .catch(error => {
+      console.error("기타 평가 정보 불러오기 오류:", error);
+    });
 };
 
-function goNext() {
-  alert("다음 단계로 이동합니다.");
-}
+//function goNext() {
+//  alert("다음 단계로 이동합니다.");
+//}

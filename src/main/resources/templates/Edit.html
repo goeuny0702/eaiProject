@@ -8,6 +8,10 @@
     <link rel="stylesheet" th:href="@{/css/Edit.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
     <script th:src="@{/js/Edit.js}" defer></script>
+    <script th:inline="javascript">
+        const userID = /*[[${user.userID}]]*/ 'defaultUser';
+        const classID = /*[[${user.classID}]]*/ 1;
+    </script>
 </head>
 <body>
 <div th:replace="layout/header :: header"></div>
@@ -57,24 +61,24 @@
         </div>
 
         <!-- 개인정보 -->
-        <div class="section">
-            <div class="section-title">개인정보</div>
-            <div class="form-row">
-                <div class="form-label">이름</div>
-                <input type="text" name="name" id="name-input" />
-                <span id="name-text" style="display:none;"></span>
-            </div>
-            <div class="form-row">
-                <div class="form-label">전화번호</div>
-                <input type="text" name="phone" id="phone-input" />
-                <span id="phone-text" style="display:none;"></span>
-            </div>
-            <div class="form-row">
-                <div class="form-label">이메일</div>
-                <input type="email" name="email" id="email-input" />
-                <span id="email-text" style="display:none;"></span>
-            </div>
+        <div class="form-row">
+            <div class="form-label">이름</div>
+            <input type="text" name="name" id="name-input" th:value="${user.userName}" />
+            <span id="name-text" style="display:none;" th:text="${user.userName}"></span>
         </div>
+
+        <div class="form-row">
+            <div class="form-label">전화번호</div>
+            <input type="text" name="phone" id="phone-input" th:value="${user.userTel}" />
+            <span id="phone-text" style="display:none;" th:text="${user.userTel}"></span>
+        </div>
+
+        <div class="form-row">
+            <div class="form-label">이메일</div>
+            <input type="email" name="email" id="email-input" th:value="${user.userEmail}" />
+            <span id="email-text" style="display:none;" th:text="${user.userEmail}"></span>
+        </div>
+
 
         <!-- 장학금 수령정보 -->
         <div class="section">
@@ -101,35 +105,25 @@
 
 
         <!-- 수강평 -->
+        <!-- 평가 항목 -->
         <div class="section">
-            <div class="section-title">수강평</div>
-            <div class="form-row">
-                <div class="form-label">훈련과정</div>
-                <select name="selectedCourse" id="selectedCourse-input">
-                    <option value="">선택</option>
-                    <option value="AI">AI 솔루션 개발</option>
-                    <option value="Web">웹 개발</option>
-                </select>
-                <span id="selectedCourse-text" style="display:none;"></span>
-            </div>
-            <div class="form-row">
-                <div class="form-label">설문회차</div>
-                <select name="sessionNumber" id="sessionNumber-input">
-                    <option value="">선택</option>
-                    <option value="1">1회차</option>
-                    <option value="2">2회차</option>
-                </select>
-                <span id="sessionNumber-text" style="display:none;"></span>
-            </div>
+            <div class="section-title">태도 및 성실 평가 (강사 의견)</div>
             <div class="form-row textarea-row">
-                <textarea name="memo" id="memo-input" placeholder="텍스트를 입력하세요."></textarea>
-                <span id="memo-text" style="display:none;"></span>
+                <textarea name="authOpinion" id="attitude-input" disabled placeholder="해당 강사 의견이 여기에 표시됩니다."></textarea>
             </div>
         </div>
 
+        <div class="section">
+            <div class="section-title">기타 특이사항</div>
+            <div class="form-row textarea-row">
+                <textarea name="interestJob" id="termination-input" disabled placeholder="기타 특이사항이 여기에 표시됩니다."></textarea>
+            </div>
+        </div>
+
+
         <!-- 하단 버튼 -->
         <div class="bottom-buttons">
-            <button type="button" onclick="goNext()">다음</button>
+<!--            <button type="button" onclick="goNext()">다음</button>-->
             <button type="button" id="saveBtn" onclick="saveAll()">저장</button>
             <button type="button" id="editBtn" onclick="toggleEdit()" style="display: none;">수정</button>
         </div>

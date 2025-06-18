@@ -8,5 +8,7 @@ import java.util.Optional;
 
 public interface BankRepository extends JpaRepository<Bank, Integer> {
 
-    Optional<Bank> findByClassUser(ClassUser classUser);
+    Optional<Bank> findByClassUser_ClassID(Long classId);
+
+
 }
