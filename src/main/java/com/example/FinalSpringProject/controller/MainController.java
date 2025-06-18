@@ -133,30 +133,31 @@ public class MainController {
 
         if (!photo.isEmpty()) {
 
-            // 기존 파일 있으면 삭제
-            if (user.getPhotoPath() != null && !user.getPhotoPath().isEmpty()) {
-                String oldFileName = user.getPhotoPath().replace("/image/", "");
-                File oldFile = new File(new File("").getAbsolutePath() + "/src/main/resources/static/image/" + oldFileName);
-                if (oldFile.exists()) oldFile.delete();
-            }
-
-            // 새 파일명은 항상 png로 저장
-            String filename = UUID.randomUUID() + ".png";
-            String uploadPath = new File("").getAbsolutePath() + "/src/main/resources/static/image/";
+            // ✅ [1] 폴더 없으면 생성
+            String uploadPath = "C:/upload/image/";
             File folder = new File(uploadPath);
             if (!folder.exists()) folder.mkdirs();
 
-            // 이미지 → png 변환 저장
+            // ✅ [2] 기존 파일 삭제
+            if (user.getPhotoPath() != null && !user.getPhotoPath().isEmpty()) {
+                String oldFileName = user.getPhotoPath().replace("/image/", "");
+                File oldFile = new File(uploadPath + oldFileName);
+                if (oldFile.exists()) oldFile.delete();
+            }
+
+            // ✅ [3] 새 파일 저장
+            String filename = UUID.randomUUID() + ".png";
             BufferedImage image = ImageIO.read(photo.getInputStream());
             ImageIO.write(image, "png", new File(uploadPath + filename));
 
-            // DB에 경로 저장
+            // ✅ [4] DB 저장
             user.setPhotoPath("/image/" + filename);
             classUserRepository.save(user);
         }
 
         return "redirect:/Edit/" + userID;
     }
+
 
     @PostMapping("/Edit/{userID}/delete-photo")
     public String deletePhoto(@PathVariable String userID) {
@@ -168,7 +169,7 @@ public class MainController {
         // 실제 파일 삭제
         if (user.getPhotoPath() != null && !user.getPhotoPath().isEmpty()) {
             String filename = user.getPhotoPath().replace("/image/", "");
-            File file = new File(new File("").getAbsolutePath() + "/src/main/resources/static/image/" + filename);
+            File file = new File("C:/upload/image/" + filename);
             if (file.exists()) file.delete();
         }
 
