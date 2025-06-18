@@ -3,10 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>커뮤니티</title>
+    <link rel="stylesheet" th:href="@{/css/community.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
 </head>
 <body>
-  <div th:replace="layout/header :: header"></div>
-  커뮤니티 입니다
-  <div th:replace="layout/footer :: footer"></div>
+<div th:replace="layout/header :: header"></div>
+<h1 class="community-title">커뮤니티</h1>
+<main class="main-container">
+    <section class="title-line">
+        <div><strong>제목</strong></div>
+        <div>@Transactional이 적용되지 않는 경우에 대해 설명해보세요.</div>
+        <div><strong>작성자</strong></div>
+        <div>임**</div>
+        <div><strong>날짜</strong></div>
+        <div>2025/06/11</div>
+    </section>
+
+    <section class="content">
+        <div class="label"><strong>내용</strong></div>
+        <div class="text">
+            아래는 Spring Service 클래스입니다. outerMethod()에서 innerMethod()를 호출하는데, innerMethod()의 트랜잭션이 제대로 작동하지 않습니다.
+            <div class="image-wrapper">
+                <img src="/image/quizimage.png" alt="문제 이미지">
+            </div>
+            이 코드에서 트랜잭션이 정상 작동하지 않는 이유를 설명하고, 이를 해결하려면 어떤 구조적 변경이 필요한지 제안해보세요.
+            <br><br>
+            <strong>배경 설명:</strong><br>
+            Spring의 AOP 기반 트랜잭션 처리 방식은 자기 자신 내부 호출 시 적용되지 않을 수 있습니다.
+        </div>
+    </section>
+</main>
+<div class="comment-container">
+    <form action="/comments" method="post" th:object="${comment}">
+        <section class="comment-box">
+            <input type="text" name="comment" id="commentInput" placeholder="댓글을 입력하세요..." />
+            <button type="submit" class="submit-button">댓글쓰기</button>
+        </section>
+    </form>
+
+    <div class="comment-title">댓글목록</div>
+
+    <div id="commentList" class="commentl-display-box">
+        <div th:each="comment : ${comments}" class="comment-line">
+            <span><strong th:text="${comment.author.userID}">작성자</strong></span>
+            <p th:text="${comment.content}">댓글 내용</p>
+
+            <!-- 로그인한 사용자와 같을 때만 삭제 버튼 -->
+            <span th:if="${session.loggedInUser != null and comment.author.userID == session.loggedInUser.userID}">
+                <form action="/comments/delete" method="post">
+                    <input type="hidden" name="commentId" th:value="${comment.id}" />
+                    <button type="submit" class="delete-btn">삭제</button>
+                </form>
+            </span>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/footer :: footer"></div>
 </body>
 </html>
