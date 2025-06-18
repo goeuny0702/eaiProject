@@ -19,16 +19,18 @@
                 <label for="jobType">훈련직종분류</label>
                 <select id="jobType" name="jobType">
                     <option value="">훈련 직종을 선택하세요.</option>
-                    <option value="it">직종1</option>
-                    <option value="it2">직종2</option>
+                    <option value="it">K-Digital Training</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="courseName">과정명</label>
                 <select id="courseName" name="courseName">
                     <option value="">과정명을 선택하세요.</option>
-                    <option value="basic">과정1</option>
-                    <option value="advanced">과정2</option>
+                    <option value="1">프로젝트 기반 풀스택(JAVA, Spring) 개발자 양성 과정 (1회차)</option>
+                    <option value="2">시네이터 언리얼(Unreal) 게임프로그래밍(VR콘텐츠 제작 전문가 양성) (2회차)</option>
+                    <option value="3">AI프로젝트 풀스택(Java, Python, React) 딥러닝(자연어처리) 개발자 양성과정 (3회차)</option>
+                    <option value="4">[풀스택][클라우드 기반] 웹&앱 개발자 취업연계 부트캠프(자바,도커,보안) (4회차)</option>
+                    <option value="5">기업 실무프로젝트 반영 풀스택 개발자 양성(자바,스프링,리액트,뷰,클라우드) (5회차)</option>
                 </select>
             </div>
         </div>
@@ -136,7 +138,7 @@
                 </div>
 
                 <div class="button-container">
-                    <button type="submit" class="submit-btn">저장</button>
+                    <button type="submit" class="submit-btn" onclick="return showAlert()">신청</button>
                 </div>
 
             </form>
@@ -151,5 +153,11 @@
 
 <!--푸터-->
 <div th:replace="layout/footer :: footer"></div>
+<script>
+    function showAlert() {
+      alert("신청이 완료되었습니다.");
+      return true; // true를 반환하면 폼이 실제로 제출됨
+    }
+</script>
 </body>
 </html>

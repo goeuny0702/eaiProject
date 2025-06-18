@@ -35,8 +35,6 @@
                         마이페이지
                     </a>
 
-
-
                     <!-- 로그인/로그아웃 -->
                     <a th:if="${userAuthority == -1}" th:href="@{/login}" class="btn-login">로그인</a>
                     <a th:if="${userAuthority != -1}" th:href="@{/logout}" class="btn-login">로그아웃</a>
@@ -49,6 +47,6 @@
             <a href="/admission-form" data-hover="입학 및 상담신청">입학 및 상담신청</a>
             <a href="/Course" data-hover="모집과정">모집과정</a>
             <a href="/community" data-hover="커뮤니티">커뮤니티</a>
-    </nav>
+        </nav>
 
 </header>

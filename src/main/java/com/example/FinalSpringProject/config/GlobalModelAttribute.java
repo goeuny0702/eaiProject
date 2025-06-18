@@ -17,6 +17,8 @@ public class GlobalModelAttribute {
         return -1; // 비로그인
     }
 
-
+    @ModelAttribute("user")
+    public ClassUser user(HttpSession session) {
+        return (ClassUser) session.getAttribute("loggedInUser");
+    }
 }
-

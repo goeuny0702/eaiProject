@@ -133,7 +133,7 @@ function toggleEdit() {
 window.onload = () => {
   const staticTrainingData = {
       "instituteName": "재현스쿨",
-      "courseName": "AI 융합 서비스 개발자 양성과정",
+      "courseName": "시네이터 언리얼 게임프로그래밍(VR콘텐츠 제작) (2회차)",
       "trainingPeriod": "2025.01.02 ~ 2025.06.30"
   };
 

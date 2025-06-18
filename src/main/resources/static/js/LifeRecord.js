@@ -98,7 +98,7 @@ function loadUserData() {
       document.getElementById("tel-text").innerText = userData.userTel || "";
 
 
-      document.getElementById("course-text").innerText = "차세대 AI 예측 Solution 개발";
+      document.getElementById("course-text").innerText = "시네이터 언리얼 게임프로그래밍(VR콘텐츠 제작) (2회차)";
       document.getElementById("duration-text").innerText = "2024.12. 26 ~ 2024. 06. 30";
 
       document.getElementById("instructor-text").innerText = "임승현";
