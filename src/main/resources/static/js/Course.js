@@ -16,7 +16,7 @@ function renderCourses(page) {
         <td>${course.subjectID - 1}</td>
         <td><a href="/view-Details/${course.subjectID}">${course.subjectTitle}</a></td>
         <td>${course.subjectPeriod}</td>
-        <td><a href="https://www.work24.go.kr/cm/main.do"><button class="apply-btn">신청</button></a></td>
+        <td><a href="/admission-form"><button class="apply-btn">신청</button></a></td>
       `;
       tbody.appendChild(tr);
   });
