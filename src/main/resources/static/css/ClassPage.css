@@ -5,21 +5,21 @@
   text-align: center;
   font-weight: bold;
   font-size: 16px;
-  padding-left: 5px;
+  padding-left: 7px;
 }
 
 .class-grid {
   max-width:1200px;
   display: grid;
-  grid-template-columns: 550px 120px 180px 230px 230px 190px;
+  grid-template-columns: 820px 180px 180px 230px 230px;
   text-align: center;
-  margin:20px auto 45px auto;
+  margin:20px auto 60px auto;
   justify-content: center;
 }
 
 .class-grid div {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 11px;
   box-sizing: border-box;
 }
 
@@ -32,8 +32,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1520px;
-  margin: 63px auto 20px auto;
+  max-width: 1620px;
+  margin: 83px auto 36px auto;
   padding: 0 10px;
 }
 
@@ -62,6 +62,17 @@
   margin: 0 5px;
   transition: color 0.3s ease, border-color 0.3s ease;
 }
+.num-btn:hover {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+.num-btn.active {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
 
 .arrow-btn {
     background-color: white;
@@ -74,7 +85,3 @@
     color: #666;
     margin: 0 3px;
 }
-
-
-
-

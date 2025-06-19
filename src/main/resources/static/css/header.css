@@ -31,12 +31,11 @@ header {
   left: 0;
   width: 100%;
   color: #ffffff;
-  transform: translateY(-100%);
+  transform: translateY(1%);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
   text-align: center;
 }
-
 .SMN_effect-13 a:hover::before {
   transform: translateY(0%);
   opacity: 1;
@@ -45,7 +44,6 @@ header {
 .SMN_effect-13 a:hover {
   color: transparent;
 }
-
 body {
     padding-top: 120px;
 }
